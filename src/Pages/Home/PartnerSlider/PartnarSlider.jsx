@@ -19,7 +19,7 @@ const logos = [
 const PartnerSlider = () => {
   return (
     <div className=" py-10">
-      <h2 className="text-2xl md:text-[28px] text-center text-primary font-bold my-10">
+      <h2 className="text-2xl md:text-[28px] text-center font-bold my-10">
         Sponsored by
       </h2>
       <Marquee speed={40} pauseOnHover={true} gradient={false}>
