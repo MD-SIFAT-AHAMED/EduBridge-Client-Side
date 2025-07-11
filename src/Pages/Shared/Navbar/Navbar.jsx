@@ -6,12 +6,12 @@ import EduBridegeLogo from "../EduBridgeLogo/EduBridegeLogo";
 const Navbar = () => {
  
   const [user, setUser] = useState(
-  {
-      name: "MD SIFAT AHAMED",
-      email: "user@example.com",
-      photo: "https://i.pravatar.cc/150?img=12", // fallback image
-    });
-
+  // {
+  //     name: "MD SIFAT AHAMED",
+  //     email: "user@example.com",
+  //     photo: "https://i.pravatar.cc/150?img=12", // fallback image
+  //   });
+  )
   const handleLogout = () => {
     console.log("Logging out...");
     setUser(null);
@@ -63,7 +63,7 @@ const Navbar = () => {
         {!user ? (
           <div className="flex gap-2">
             <Link
-              to="/signin"
+              to="/register"
               className="btn rounded-xl btn-primary btn-outline"
             >
               Sign In
