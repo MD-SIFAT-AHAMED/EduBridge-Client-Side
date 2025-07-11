@@ -66,7 +66,7 @@ const Navbar = () => {
               to="/register"
               className="btn rounded-xl btn-primary btn-outline"
             >
-              Sign In
+              Sign Up
             </Link>
             <Link
               to="/login"
