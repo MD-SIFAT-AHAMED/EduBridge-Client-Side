@@ -36,8 +36,7 @@ const Banner = () => {
             alt="Banner"
             className="w-full h-auto object-cover"
           />
-
-          <div className="absolute inset-0 flex flex-col lg:items-start justify-center bg-black/40 text-white p-10">
+          <div className="absolute inset-0 flex flex-col lg:items-start justify-center  bg-black/40 text-white p-10">
             <h3 className="text-lg md:text-4xl font-bold mb-2">
               Share Your Knowledge
               <br /> Inspire the World
