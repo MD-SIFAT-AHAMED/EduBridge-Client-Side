@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import SignInGoogle from "../../Shared/SignInGoogle/SignInGoogle";
 
 const Register = () => {
   const {
@@ -126,6 +127,9 @@ const Register = () => {
         <Link to="/login" className="text-blue-500 font-medium hover:underline">
           Login
         </Link>
+      </p>
+      <p className="place-items-center">
+        <SignInGoogle />
       </p>
     </div>
   );

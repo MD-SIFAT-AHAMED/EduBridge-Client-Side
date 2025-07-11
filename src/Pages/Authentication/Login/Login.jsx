@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import SignInGoogle from "../../Shared/SignInGoogle/SignInGoogle";
 const Login = () => {
   const {
     register,
@@ -20,7 +21,10 @@ const Login = () => {
         Login to EduBridge
       </h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 **:focus:outline-none">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 **:focus:outline-none"
+      >
         {/* Email Field */}
         <div className="form-control">
           <label className="label">
@@ -68,7 +72,7 @@ const Login = () => {
         {/* Forgot Password Link */}
         <div className="text-right">
           <Link
-            to="/forgot-password"
+            to="/forgotPassword"
             className="text-sm text-blue-500 hover:underline"
           >
             Forgot password?
@@ -95,6 +99,9 @@ const Login = () => {
         >
           Register
         </Link>
+      </p>
+      <p className="place-items-center">
+        <SignInGoogle />
       </p>
     </div>
   );
