@@ -133,7 +133,7 @@ const Navbar = () => {
           {/* Add other right-side nav items here if needed */}
         </div>
 
-        <div className="drawer-side">
+        <div className="drawer-side z-10">
           <label htmlFor="mobile-drawer" className="drawer-overlay"></label>
           <ul className="menu *:justify-start p-4 w-2/3 min-h-full bg-base-100 text-base-content">
             {/* Sidebar content here */}

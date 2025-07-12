@@ -1,23 +1,57 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import SignInGoogle from "../../Shared/SignInGoogle/SignInGoogle";
+import axios from "axios";
+import useAuth from "../../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const [profieImg, setProfileImg] = useState("");
+  const { createUser, updateUserData } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // upload image to ImgBB
+  const uploadImageImgBB = async (e) => {
+    const image = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const imgUrl = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_Image_Upload_key
+    }`;
+    const res = await axios.post(imgUrl, formData);
+    setProfileImg(res.data.data.url);
+  };
 
   const onSubmit = (data) => {
-    console.log("Register Data:", data);
-
-    // Access image file:
-    const imageFile = data.image[0];
-    console.log("Image file:", imageFile);
+    const userData = {
+      displayName: data.name,
+      photoURL: profieImg,
+    };
+    createUser(data.email, data.password)
+      .then(() => {
+        updateUserData(userData)
+          .then(() => {
+            toast.success("Register Successfuly");
+            navigate(location.state?.from || "/");
+          })
+          .catch((err) => {
+            toast.error(err);
+          });
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+    reset();
   };
 
   return (
@@ -55,15 +89,10 @@ const Register = () => {
           </label>
           <input
             type="file"
+            onChange={uploadImageImgBB}
             className="file-input file-input-bordered w-full"
             accept="image/*"
-            {...register("image", { required: "Image is required" })}
           />
-          {errors.image && (
-            <span className="text-red-500 text-sm mt-1">
-              {errors.image.message}
-            </span>
-          )}
         </div>
 
         {/* Email Field */}
