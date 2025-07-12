@@ -1,19 +1,34 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import SignInGoogle from "../../Shared/SignInGoogle/SignInGoogle";
+import useAuth from "../../../Hooks/useAuth";
+import toast from "react-hot-toast";
 const Login = () => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const onSubmit = (data) => {
-    console.log("Login Data:", data);
-    // Handle login logic here
+    console.log(data);
+    signIn(data.email, data.password)
+      .then(() => {
+        toast.success("Login Successfuly");
+        navigate(location.state?.from || "/");
+      })
+      .catch((err) => {
+        toast.error(err.code);
+      });
+    // Form value reset
+    reset();
   };
   return (
     <div className="card-body">
