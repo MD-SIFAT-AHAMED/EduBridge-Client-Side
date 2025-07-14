@@ -5,6 +5,7 @@ import AuthLayout from "../Main/AuthLayout";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
+import TeachOnEdu from "../Pages/TeachOnEdu/TeachOnEdu";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "teachOnEdu",
+        element: <TeachOnEdu />,
       },
     ],
   },

@@ -53,6 +53,7 @@ const Register = () => {
         updateUserData(userData)
           .then(async () => {
             const res = await axiosInstance.post("/users", userInfo);
+            console.log(res);
             toast.success("Register Successfuly");
             navigate(location.state?.from || "/");
           })

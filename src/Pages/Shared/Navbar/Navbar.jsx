@@ -1,20 +1,22 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { FaHome, FaChalkboardTeacher, FaBookOpen } from "react-icons/fa";
-import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import EduBridegeLogo from "../EduBridgeLogo/EduBridegeLogo";
+import useAuth from "../../../Hooks/useAuth";
+import toast from "react-hot-toast";
 const Navbar = () => {
- 
-  const [user, setUser] = useState(
-  // {
-  //     name: "MD SIFAT AHAMED",
-  //     email: "user@example.com",
-  //     photo: "https://i.pravatar.cc/150?img=12", // fallback image
-  //   });
-  )
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    console.log("Logging out...");
-    setUser(null);
+    logOut()
+      .then(() => {
+        navigate("/");
+        toast.success("LogOut Success");
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
   };
 
   const navLinks = (
@@ -36,7 +38,7 @@ const Navbar = () => {
         <FaBookOpen className="mr-1" /> All Classes
       </NavLink>
       <NavLink
-        to="/teach"
+        to="/teachOnEdu"
         className={({ isActive }) =>
           `btn btn-ghost text-base ${isActive ? "text-primary" : ""} `
         }
@@ -84,7 +86,7 @@ const Navbar = () => {
             >
               <div className="w-10 rounded-full">
                 <img
-                  src={user.photo || <FaUserCircle />}
+                  src={user.photoURL || <FaUserCircle />}
                   alt="User"
                   className="object-cover"
                 />
@@ -95,13 +97,13 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[999] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <p className="font-bold">{user.name}</p>
+                <p className="font-bold">{user.displayName}</p>
               </li>
               <li>
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
-                <button onClick={handleLogout}>Logout</button>
+                <button onClick={handleLogout} className="text-red-600">Logout</button>
               </li>
             </ul>
           </div>
