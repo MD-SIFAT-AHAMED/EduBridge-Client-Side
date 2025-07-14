@@ -6,6 +6,7 @@ import SignInGoogle from "../../Shared/SignInGoogle/SignInGoogle";
 import axios from "axios";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxios from "../../../Hooks/useAxios";
 
 const Register = () => {
   const {
@@ -19,6 +20,7 @@ const Register = () => {
   const { createUser, updateUserData } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosInstance = useAxios();
 
   // upload image to ImgBB
   const uploadImageImgBB = async (e) => {
@@ -37,10 +39,20 @@ const Register = () => {
       displayName: data.name,
       photoURL: profieImg,
     };
+
+    const userInfo = {
+      name: data.name,
+      email: data.email,
+      role: "student", //default role
+      photo: profieImg,
+      create_at: new Date().toISOString(),
+      last_log_in: new Date().toISOString(),
+    };
     createUser(data.email, data.password)
       .then(() => {
         updateUserData(userData)
-          .then(() => {
+          .then(async () => {
+            const res = await axiosInstance.post("/users", userInfo);
             toast.success("Register Successfuly");
             navigate(location.state?.from || "/");
           })

@@ -3,11 +3,13 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
+import useAxios from "../../../Hooks/useAxios";
 
 const SignInGoogle = () => {
   const { loginWithGoggle } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosInstance = useAxios();
 
   const handlerLoginWithGoogle = () => {
     loginWithGoggle()
@@ -15,12 +17,14 @@ const SignInGoogle = () => {
         const user = result.user;
         // Update userInfo in the database
         const userInfo = {
+          name: user.displayName,
           email: user.email,
-          role: "user", //default role
+          role: "student", //default role
+          photo: user.photoURL,
           create_at: new Date().toISOString(),
           last_log_in: new Date().toISOString(),
         };
-        // const userRes = await axiosInstance.post("/users", userInfo);
+        const userRes = await axiosInstance.post("/users", userInfo);
 
         toast.success("Login Successfuly");
         navigate(location.state?.from || "/");
