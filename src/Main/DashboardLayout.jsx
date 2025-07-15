@@ -11,8 +11,10 @@ import {
   FaUsers,
   FaClipboardList,
 } from "react-icons/fa";
+import useUserRole from "../Hooks/useUserRole";
 
 const DashboardLayout = () => {
+  const { role, roleLoading } = useUserRole();
   return (
     <div className="drawer lg:drawer-open">
       {/* Drawer Toggle for Small Devices */}
@@ -49,12 +51,12 @@ const DashboardLayout = () => {
             <EduBridegeLogo />
           </div>
 
-          <li>
+          {/* <li>
             <NavLink to="/dashboard">
               <FaHome className="mr-2" />
               Dashboard Home
             </NavLink>
-          </li>
+          </li> */}
 
           <li>
             <NavLink to="/">
@@ -64,22 +66,28 @@ const DashboardLayout = () => {
           </li>
 
           {/* Student Links */}
-
-          <li>
-            <NavLink to="/dashboard/enrolled-classes">
-              <FaBook className="mr-2" />
-              My Enroll Class
-            </NavLink>
-          </li>
+          {!roleLoading && role === "student" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/enrolled-classes">
+                  <FaBook className="mr-2" />
+                  My Enroll Class
+                </NavLink>
+              </li>
+            </>
+          )}
 
           {/* Teacher Links */}
-
-          <li>
-            <NavLink to="/dashboard/add-class">
-              <FaPlus className="mr-2" />
-              Add Class
-            </NavLink>
-          </li>
+          {!roleLoading && role === "teacher" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/add-class">
+                  <FaPlus className="mr-2" />
+                  Add Class
+                </NavLink>
+              </li>
+            </>
+          )}
 
           <li>
             <NavLink to="/dashboard/my-classes">
@@ -89,27 +97,30 @@ const DashboardLayout = () => {
           </li>
 
           {/* Admin Links */}
+          {!roleLoading && role === "admin" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/teacher-requests">
+                  <FaChalkboardTeacher className="mr-2" />
+                  Teacher Request
+                </NavLink>
+              </li>
 
-          <li>
-            <NavLink to="/dashboard/teacher-requests">
-              <FaChalkboardTeacher className="mr-2" />
-              Teacher Request
-            </NavLink>
-          </li>
+              <li>
+                <NavLink to="/dashboard/users">
+                  <FaUsers className="mr-2" />
+                  All Users
+                </NavLink>
+              </li>
 
-          <li>
-            <NavLink to="/dashboard/users">
-              <FaUsers className="mr-2" />
-              All Users
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink to="/dashboard/all-classes">
-              <FaBook className="mr-2" />
-              All Classes
-            </NavLink>
-          </li>
+              <li>
+                <NavLink to="/dashboard/all-classes">
+                  <FaBook className="mr-2" />
+                  All Classes
+                </NavLink>
+              </li>
+            </>
+          )}
 
           {/* Common */}
           <li>

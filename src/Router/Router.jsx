@@ -12,6 +12,8 @@ import DashboardLayout from "../Main/DashboardLayout";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import TeacherRequest from "../Pages/Dashboard/TeacherRequest/TeacherRequest";
 import Users from "../Pages/Dashboard/Users/Users";
+import ForbiddenAccess from "../Pages/Shared/ForbiddenAccess/ForbiddenAccess";
+import AdminRoute from "../Routes/AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
             <TeachOnEdu />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "forbiddenAccess",
+        Component: ForbiddenAccess,
       },
     ],
   },
@@ -64,17 +70,31 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // Common
       {
         path: "profile",
         Component: MyProfile,
       },
+      // Student Routes
+
+      // Teacher Routes
+
+      // Admin Routes
       {
         path: "teacher-requests",
-        element: <TeacherRequest />,
+        element: (
+          <AdminRoute>
+            <TeacherRequest />
+          </AdminRoute>
+        ),
       },
       {
         path: "users",
-        element: <Users />,
+        element: (
+          <AdminRoute>
+            <Users />
+          </AdminRoute>
+        ),
       },
     ],
   },

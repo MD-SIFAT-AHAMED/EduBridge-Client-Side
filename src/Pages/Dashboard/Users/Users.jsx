@@ -112,7 +112,7 @@ const Users = () => {
           </tbody>
         </table>
       </div>
-      {/* ✅ DaisyUI Modal */}
+      {/* Modal */}
       {selectedUser && (
         <dialog id="confirmModal" className="modal modal-open">
           <div className="modal-box">
@@ -125,7 +125,7 @@ const Users = () => {
             <div className="modal-action">
               <form method="dialog" className="space-x-3">
                 <button
-                  className="btn btn-success"
+                  className="btn bg-green-400 text-gray-900"
                   onClick={handleConfirmMakeAdmin}
                   disabled={promoteMutation.isPending}
                 >

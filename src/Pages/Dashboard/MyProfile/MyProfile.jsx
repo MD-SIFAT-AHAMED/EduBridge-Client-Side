@@ -28,7 +28,7 @@ const MyProfile = () => {
             </div>
           </div>
           <h2 className="text-2xl font-bold">{user?.displayName}</h2>
-          <p className="flex justify-center items-center gap-2 text-sm opacity-90">
+          <p className="flex justify-center items-center gap-2 text-sm opacity-90 capitalize">
             <FaUserTag className="text-white" /> {dbUser?.role || "Student"}
           </p>
         </div>
