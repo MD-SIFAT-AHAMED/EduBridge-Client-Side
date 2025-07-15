@@ -59,7 +59,7 @@ const TeachOnEdu = () => {
   };
 
   return (
-    <section className="max-h-screen bg-base-200 px-4 py-16">
+    <section className="h-fit bg-base-200 px-4 py-16">
       {/* ✅ Already a Teacher */}
       {dbUser?.status === "teacher" && (
         <div className="col-span-2 text-center">

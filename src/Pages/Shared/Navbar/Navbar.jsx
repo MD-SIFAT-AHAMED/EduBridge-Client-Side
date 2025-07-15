@@ -4,6 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 import EduBridegeLogo from "../EduBridgeLogo/EduBridegeLogo";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
@@ -103,7 +104,9 @@ const Navbar = () => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
-                <button onClick={handleLogout} className="text-red-600">Logout</button>
+                <button onClick={handleLogout} className="text-red-600">
+                  Logout
+                </button>
               </li>
             </ul>
           </div>

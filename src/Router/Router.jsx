@@ -6,11 +6,16 @@ import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import TeachOnEdu from "../Pages/TeachOnEdu/TeachOnEdu";
+import PrivateRoute from "../Routes/PrivateRoute";
+import NotFound from "../Pages/Shared/NotFound/NotFound";
+import DashboardLayout from "../Main/DashboardLayout";
+import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -18,7 +23,11 @@ const router = createBrowserRouter([
       },
       {
         path: "teachOnEdu",
-        element: <TeachOnEdu />,
+        element: (
+          <PrivateRoute>
+            <TeachOnEdu />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -27,6 +36,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: AuthLayout,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/login",
@@ -39,6 +49,22 @@ const router = createBrowserRouter([
       {
         path: "/forgotPassword",
         Component: ForgotPassword,
+      },
+    ],
+  },
+
+  // DashboardLayout
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "profile",
+        Component: MyProfile,
       },
     ],
   },
