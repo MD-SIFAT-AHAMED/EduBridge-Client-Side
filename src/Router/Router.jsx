@@ -10,6 +10,8 @@ import PrivateRoute from "../Routes/PrivateRoute";
 import NotFound from "../Pages/Shared/NotFound/NotFound";
 import DashboardLayout from "../Main/DashboardLayout";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
+import TeacherRequest from "../Pages/Dashboard/TeacherRequest/TeacherRequest";
+import Users from "../Pages/Dashboard/Users/Users";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: "profile",
         Component: MyProfile,
+      },
+      {
+        path: "teacher-requests",
+        element: <TeacherRequest />,
+      },
+      {
+        path: "users",
+        element: <Users />,
       },
     ],
   },

@@ -3,7 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import teacher from "../../assets/partnerLogo/teacherFrom.jpg";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 const TeachOnEdu = () => {
   const {
     register,
@@ -13,6 +13,7 @@ const TeachOnEdu = () => {
   } = useForm();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const qureyClient = useQueryClient();
 
   const { data: dbUser = [], refetch } = useQuery({
     queryKey: ["user", user?.email],
@@ -32,7 +33,7 @@ const TeachOnEdu = () => {
     },
     onSuccess: () => {
       toast.success("Request sent again!");
-      refetch(); 
+      qureyClient.invalidateQueries(["user"]);
     },
     onError: (error) => {
       toast.error("Failed to resend request");
@@ -49,17 +50,21 @@ const TeachOnEdu = () => {
       status: "pending",
       createAy: new Date().toISOString(),
     };
-    console.log("Submitted Data:", formData);
+
     axiosSecure.post("/teacher-requrests", formData).then((res) => {
       if (res.data.insertedId) {
         toast.success("Application Success");
+        refetch();
       }
     });
     reset();
   };
 
   return (
-    <section className="h-fit bg-base-200 px-4 py-16">
+    <section
+      style={{ minHeight: "calc(100vh - 342px)" }}
+      className="bg-base-200 px-4 py-16"
+    >
       {/* ✅ Already a Teacher */}
       {dbUser?.status === "teacher" && (
         <div className="col-span-2 text-center">
