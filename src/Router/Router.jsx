@@ -14,6 +14,9 @@ import TeacherRequest from "../Pages/Dashboard/TeacherRequest/TeacherRequest";
 import Users from "../Pages/Dashboard/Users/Users";
 import ForbiddenAccess from "../Pages/Shared/ForbiddenAccess/ForbiddenAccess";
 import AdminRoute from "../Routes/AdminRoute";
+import TeacherRoute from "../Routes/TeacherRoute";
+import AddClass from "../Pages/Dashboard/AddClass/AddClass";
+import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +81,22 @@ const router = createBrowserRouter([
       // Student Routes
 
       // Teacher Routes
+      {
+        path: "add-class",
+        element: (
+          <TeacherRoute>
+            <AddClass />
+          </TeacherRoute>
+        ),
+      },
+      {
+        path: "my-classes",
+        element: (
+          <TeacherRoute>
+            <MyClasses />
+          </TeacherRoute>
+        ),
+      },
 
       // Admin Routes
       {
