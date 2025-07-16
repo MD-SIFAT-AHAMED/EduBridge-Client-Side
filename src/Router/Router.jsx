@@ -16,7 +16,8 @@ import ForbiddenAccess from "../Pages/Shared/ForbiddenAccess/ForbiddenAccess";
 import AdminRoute from "../Routes/AdminRoute";
 import TeacherRoute from "../Routes/TeacherRoute";
 import AddClass from "../Pages/Dashboard/AddClass/AddClass";
-import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
+import TeacherClasses from "../Pages/Dashboard/TeacherClasses/TeacherClasses";
+import AllClasses from "../Pages/Dashboard/AllClasses/AllClasses";
 
 const router = createBrowserRouter([
   {
@@ -90,10 +91,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "my-classes",
+        path: "teacher-classes",
         element: (
           <TeacherRoute>
-            <MyClasses />
+            <TeacherClasses />
           </TeacherRoute>
         ),
       },
@@ -112,6 +113,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <Users />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "all-classes",
+        element: (
+          <AdminRoute>
+            <AllClasses />
           </AdminRoute>
         ),
       },

@@ -11,7 +11,7 @@ const Users = () => {
   const [selectedUser, setSelectedUser] = useState(null);
 
   // Fetch all users (or filtered)
-  const { data: users = [] } = useQuery({
+  const { data: users = [], isPending } = useQuery({
     queryKey: ["users", searchTerm],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users?search=${searchTerm}`);
@@ -36,11 +36,13 @@ const Users = () => {
   });
 
   const handleConfirmMakeAdmin = () => {
-    console.log(selectedUser._id)
+    console.log(selectedUser._id);
     if (selectedUser?._id) {
       promoteMutation.mutate(selectedUser._id);
     }
   };
+  if (isPending) return <LoadingSpinner />;
+  
   return (
     <section className="p-6">
       <h2 className="text-2xl font-bold mb-4">All Users</h2>

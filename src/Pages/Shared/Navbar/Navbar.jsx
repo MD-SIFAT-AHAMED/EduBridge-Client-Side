@@ -5,15 +5,18 @@ import EduBridegeLogo from "../EduBridgeLogo/EduBridegeLogo";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { useQueryClient } from "@tanstack/react-query";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const handleLogout = () => {
     logOut()
       .then(() => {
         navigate("/");
-        toast.success("LogOut Success");
+        queryClient.removeQueries();
+        toast.success("Logout Success");
       })
       .catch((err) => {
         toast.error(err);

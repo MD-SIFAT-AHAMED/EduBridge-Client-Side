@@ -41,7 +41,7 @@ const AddClass = () => {
       toast.success("Class added successfully!");
       queryClient.invalidateQueries(["classes"]);
       setImageUrl("");
-      navigate("/dashboard/my-classes");
+      navigate("/dashboard/teacher-classes");
       reset();
     },
     onError: () => {

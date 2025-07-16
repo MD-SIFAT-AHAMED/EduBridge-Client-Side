@@ -88,7 +88,7 @@ const DashboardLayout = () => {
               </li>
 
               <li>
-                <NavLink to="/dashboard/my-classes">
+                <NavLink to="/dashboard/teacher-classes">
                   <FaClipboardList className="mr-2" />
                   My Classes
                 </NavLink>

@@ -16,6 +16,7 @@ const MyProfile = () => {
       return res.data;
     },
   });
+  console.log(dbUser)
 
   return (
     <section className="min-h-screen bg-primary/10 flex justify-center items-center px-4 py-12">

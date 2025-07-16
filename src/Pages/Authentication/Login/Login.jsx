@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import SignInGoogle from "../../Shared/SignInGoogle/SignInGoogle";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 const Login = () => {
   const {
     register,
@@ -16,11 +17,12 @@ const Login = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const queryClient = useQueryClient();
   const onSubmit = (data) => {
-    console.log(data);
     signIn(data.email, data.password)
       .then(() => {
+        queryClient.removeQueries(); // Clear old cache
+        queryClient.invalidateQueries(); // Refetch everything fresh
         toast.success("Login Successfuly");
         navigate(location.state?.from || "/");
       })

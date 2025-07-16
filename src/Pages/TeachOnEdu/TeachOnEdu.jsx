@@ -4,6 +4,7 @@ import teacher from "../../assets/partnerLogo/teacherFrom.jpg";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import LoadingSpinner from "../Shared/LoadingSpinner/LoadingSpinner";
 const TeachOnEdu = () => {
   const {
     register,
@@ -15,7 +16,11 @@ const TeachOnEdu = () => {
   const axiosSecure = useAxiosSecure();
   const qureyClient = useQueryClient();
 
-  const { data: dbUser = [], refetch } = useQuery({
+  const {
+    data: dbUser = [],
+    refetch,
+    isPending,
+  } = useQuery({
     queryKey: ["user", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -23,6 +28,7 @@ const TeachOnEdu = () => {
       return res.data;
     },
   });
+ 
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -59,6 +65,7 @@ const TeachOnEdu = () => {
     });
     reset();
   };
+   if (isPending) return <LoadingSpinner />;
 
   return (
     <section
