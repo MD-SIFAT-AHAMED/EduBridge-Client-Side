@@ -86,15 +86,15 @@ const DashboardLayout = () => {
                   Add Class
                 </NavLink>
               </li>
+
+              <li>
+                <NavLink to="/dashboard/my-classes">
+                  <FaClipboardList className="mr-2" />
+                  My Class
+                </NavLink>
+              </li>
             </>
           )}
-
-          <li>
-            <NavLink to="/dashboard/my-classes">
-              <FaClipboardList className="mr-2" />
-              My Class
-            </NavLink>
-          </li>
 
           {/* Admin Links */}
           {!roleLoading && role === "admin" && (
