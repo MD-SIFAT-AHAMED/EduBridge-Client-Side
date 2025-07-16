@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 import useAxios from "../../../Hooks/useAxios";
+import { Link } from "react-router";
 
 const AllClasses = () => {
   const axiosInstance = useAxios();
-
   const { data: approvedClasses = [], isLoading } = useQuery({
     queryKey: ["approvedClasses"],
     queryFn: async () => {
@@ -43,8 +43,10 @@ const AllClasses = () => {
               <p>
                 <strong>Total Enrolled:</strong> {cls.totalEnrolled || 0}
               </p>
-              <div className="card-actions justify-end">
-                <button className="btn w-full btn-primary">Enroll</button>
+              <div>
+                <Link to={`/classes-details/${cls._id}`}>
+                  <button className="btn w-full btn-primary">Enroll</button>
+                </Link>
               </div>
             </div>
           </div>

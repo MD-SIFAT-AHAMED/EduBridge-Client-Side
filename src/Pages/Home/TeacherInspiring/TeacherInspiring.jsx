@@ -3,7 +3,7 @@ import teacher from "../../../assets/partnerLogo/teacher.jpg";
 import { Link } from "react-router";
 const TeacherInspiring = () => {
   return (
-    <div className="hero min-h-[60vh] bg-base-100 px-4 md:px-10">
+    <div className="hero bg-base-100 px-4 md:px-10">
       <div className="hero-content flex-col lg:flex-row gap-10">
         {/* Left - Image */}
         <img
@@ -22,7 +22,7 @@ const TeacherInspiring = () => {
             we empower passionate educators to create impactful learning
             experiences. Join our platform and inspire the next generation.
           </p>
-          <Link to={''}>
+          <Link to={'/teachOnEdu'}>
             <button className="btn btn-primary mt-4">
               Start Teaching Today
             </button>

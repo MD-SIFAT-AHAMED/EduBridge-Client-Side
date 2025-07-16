@@ -4,7 +4,7 @@ import EduBridegeLogo from "../EduBridgeLogo/EduBridegeLogo";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer footer-horizontal footer-center bg-black text-primary-content p-10">
+      <footer className="footer footer-horizontal footer-center  text-primary-content p-10">
         <aside>
           <EduBridegeLogo />
           <p className="font-bold">
