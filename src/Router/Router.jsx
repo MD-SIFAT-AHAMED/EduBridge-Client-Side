@@ -18,6 +18,7 @@ import TeacherRoute from "../Routes/TeacherRoute";
 import AddClass from "../Pages/Dashboard/AddClass/AddClass";
 import TeacherClasses from "../Pages/Dashboard/TeacherClasses/TeacherClasses";
 import AllClasses from "../Pages/Dashboard/AllClasses/AllClasses";
+import Classes from "../Pages/Classes/Classes/Classes";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "classes",
+        Component: Classes,
       },
       {
         path: "teachOnEdu",
