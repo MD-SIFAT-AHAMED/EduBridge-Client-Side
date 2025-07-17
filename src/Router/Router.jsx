@@ -21,6 +21,8 @@ import AllClasses from "../Pages/Dashboard/AllClasses/AllClasses";
 import Classes from "../Pages/Classes/Classes/Classes";
 import ClassesDetails from "../Pages/Classes/ClassesDetails/ClassesDetails";
 import Payment from "../Pages/Payment/Payment/Payment";
+import EnrollClasses from "../Pages/Dashboard/EnrollClasses/EnrollClasses";
+import EnrollClassDetails from "../Pages/Dashboard/EnrollClassDetails/EnrollClassDetails";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +105,22 @@ const router = createBrowserRouter([
         Component: MyProfile,
       },
       // Student Routes
+      {
+        path: "enrolled-classes",
+        element: (
+          <PrivateRoute>
+            <EnrollClasses />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "enrolled-classes-details/:id",
+        element: (
+          <PrivateRoute>
+            <EnrollClassDetails />
+          </PrivateRoute>
+        ),
+      },
 
       // Teacher Routes
       {

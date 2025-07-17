@@ -41,7 +41,7 @@ const AllClasses = () => {
               </p>
               <p>{cls.description?.slice(0, 100)}...</p>
               <p>
-                <strong>Total Enrolled:</strong> {cls.totalEnrolled || 0}
+                <strong>Total Enrolled:</strong> {cls.totalEnrolled}
               </p>
               <div>
                 <Link to={`/classes-details/${cls._id}`}>

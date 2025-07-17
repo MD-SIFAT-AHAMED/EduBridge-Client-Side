@@ -56,6 +56,7 @@ const AddClass = () => {
       email: user?.email,
       image: imageUrl,
       status: "pending",
+      totalEnrolled:0,
       createAt: new Date().toISOString(),
     };
     addClassMutaion.mutate(classData);

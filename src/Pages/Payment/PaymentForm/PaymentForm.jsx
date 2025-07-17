@@ -2,9 +2,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 import useAuth from "../../../Hooks/useAuth";
+import { Await } from "react-router";
+import toast from "react-hot-toast";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -13,6 +15,7 @@ const PaymentForm = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const { data: classInfo, ispending } = useQuery({
     queryKey: ["classes", id],
@@ -64,24 +67,35 @@ const PaymentForm = () => {
     } else {
       if (result.paymentIntent.status === "succeeded") {
         setError(null);
-       
+
         // create payment history
-        const paymentData={
-            classId:id,
-            amount:classInfo.price,
-            name:user.displayName,
-            email:user.email,
-            transactionId:result.paymentIntent.id,
-            createAt:new Date().toISOString(),
-            paymentMethod:result.paymentIntent.payment_method_types[0]
-        }
-        console.log(paymentData)
+        const paymentData = {
+          classId: id,
+          amount: classInfo.price,
+          name: user.displayName,
+          email: user.email,
+          transactionId: result.paymentIntent.id,
+          paid: new Date().toISOString(),
+          classTitle: classInfo.title,
+          paymentMethod: result.paymentIntent.payment_method_types[0],
+        };
 
-
-
+        await axiosSecure.post("/payments", paymentData);
+        const enrollData = {
+          classId: id,
+          title: classInfo.title,
+          email: user.email,
+          teacher: classInfo.name,
+          image: classInfo.image,
+        };
+        await axiosSecure.post("/enroll/classes", enrollData);
+        
+        navigate("/dashboard/enrolled-classes");
+        toast.success("Payment Successfuly");
       }
     }
   };
+
   if (ispending) return <LoadingSpinner />;
 
   return (

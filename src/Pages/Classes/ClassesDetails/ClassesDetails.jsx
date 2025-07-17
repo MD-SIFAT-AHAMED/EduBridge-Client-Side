@@ -42,7 +42,7 @@ const ClassesDetails = () => {
             <strong>Description:</strong> {classData.description}
           </p>
           <p>
-            <strong>Total Enrolled:</strong> {classData.totalEnrolled || 0}
+            <strong>Total Enrolled:</strong> {classData.totalEnrolled}
           </p>
           <Link to={`/payment/${classData._id}`}>
             <button className="w-full btn btn-primary">
