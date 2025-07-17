@@ -1,6 +1,7 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 
 const ClassesDetails = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const ClassesDetails = () => {
     },
   });
 
-  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <section className="max-w-4xl mx-auto px-4 py-10">
@@ -43,7 +44,11 @@ const ClassesDetails = () => {
           <p>
             <strong>Total Enrolled:</strong> {classData.totalEnrolled || 0}
           </p>
-          <button className="w-full btn btn-primary">${classData.price} | Pay Now</button>
+          <Link to={`/payment/${classData._id}`}>
+            <button className="w-full btn btn-primary">
+              ${classData.price} | Pay Now
+            </button>
+          </Link>
         </div>
       </div>
     </section>

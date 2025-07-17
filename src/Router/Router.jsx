@@ -20,6 +20,7 @@ import TeacherClasses from "../Pages/Dashboard/TeacherClasses/TeacherClasses";
 import AllClasses from "../Pages/Dashboard/AllClasses/AllClasses";
 import Classes from "../Pages/Classes/Classes/Classes";
 import ClassesDetails from "../Pages/Classes/ClassesDetails/ClassesDetails";
+import Payment from "../Pages/Payment/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <TeachOnEdu />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment />
           </PrivateRoute>
         ),
       },
