@@ -24,6 +24,7 @@ import Payment from "../Pages/Payment/Payment/Payment";
 import EnrollClasses from "../Pages/Dashboard/EnrollClasses/EnrollClasses";
 import EnrollClassDetails from "../Pages/Dashboard/EnrollClassDetails/EnrollClassDetails";
 import SeeDetails from "../Pages/Dashboard/SeeDetails/SeeDetails";
+import ClassProgress from "../Pages/Dashboard/ClassProgress/ClassProgress";
 
 const router = createBrowserRouter([
   {
@@ -155,6 +156,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <TeacherRequest />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "class-progress/:classId",
+        element: (
+          <AdminRoute>
+            <ClassProgress />
           </AdminRoute>
         ),
       },

@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { useQueryClient } from "@tanstack/react-query";
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user, loading, logOut } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -17,6 +17,7 @@ const Navbar = () => {
         navigate("/");
         queryClient.removeQueries();
         toast.success("Logout Success");
+        localStorage.removeItem("access-token");
       })
       .catch((err) => {
         toast.error(err);
@@ -60,61 +61,65 @@ const Navbar = () => {
       </div>
 
       {/* Center - Nav Links */}
-      <div className="navbar-center hidden lg:flex">
-        <div className="flex gap-2">{navLinks}</div>
-      </div>
+      {!loading && (
+        <div className="navbar-center hidden lg:flex">
+          <div className="flex gap-2">{navLinks}</div>
+        </div>
+      )}
 
       {/* Right - Auth Buttons or User */}
-      <div className="navbar-end ">
-        {!user ? (
-          <div className="flex gap-2">
-            <Link
-              to="/register"
-              className="btn rounded-xl btn-primary btn-outline"
-            >
-              Sign Up
-            </Link>
-            <Link
-              to="/login"
-              className="btn rounded-xl hidden lg:flex  btn-primary"
-            >
-              Log In
-            </Link>
-          </div>
-        ) : (
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  src={user.photoURL || <FaUserCircle />}
-                  alt="User"
-                  className="object-cover"
-                />
-              </div>
+      {!loading && (
+        <div className="navbar-end ">
+          {!user ? (
+            <div className="flex gap-2">
+              <Link
+                to="/register"
+                className="btn rounded-xl btn-primary btn-outline"
+              >
+                Sign Up
+              </Link>
+              <Link
+                to="/login"
+                className="btn rounded-xl hidden lg:flex  btn-primary"
+              >
+                Log In
+              </Link>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[999] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <p className="font-bold">{user.displayName}</p>
-              </li>
-              <li>
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-              <li>
-                <button onClick={handleLogout} className="text-red-600">
-                  Logout
-                </button>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
+          ) : (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    src={user.photoURL || <FaUserCircle />}
+                    alt="User"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[999] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <p className="font-bold">{user.displayName}</p>
+                </li>
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="text-red-600">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Mobile Nav (Hamburger Menu) */}
       <div className="drawer w-fit navbar-end lg:hidden">

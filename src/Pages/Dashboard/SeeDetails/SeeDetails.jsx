@@ -15,6 +15,7 @@ const SeeDetails = () => {
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
   const assignmentModalRef = useRef();
+  
   // Get total enrollment count
   const { data: enrollCount = 0 } = useQuery({
     queryKey: ["enrollmentCount", classId],

@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
+import { Link } from "react-router";
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
@@ -15,6 +16,7 @@ const AllClasses = () => {
       return res.data;
     },
   });
+console.log(classes)
 
   //  Mutation for status update (approve/reject)
   const statusMutation = useMutation({
@@ -100,7 +102,7 @@ const AllClasses = () => {
                     className="btn btn-sm btn-info"
                     disabled={cls.status !== "approved"}
                   >
-                    Progress
+                    <Link to={`/dashboard/class-progress/${cls._id}`}>Progress</Link>
                   </button>
                 </td>
               </tr>

@@ -107,6 +107,14 @@ const EnrollClassDetails = () => {
 
   return (
     <div className="p-6">
+      <button
+        className="btn btn-outline btn-primary flex items-center gap-2 my-5"
+        onClick={() => setIsOpen(true)}
+      >
+        <FaFileAlt />
+        Teaching Evaluation Report
+      </button>
+
       <h2 className="text-2xl font-bold mb-4">Assignment Details</h2>
 
       {assignments.length === 0 ? (
@@ -161,14 +169,6 @@ const EnrollClassDetails = () => {
           </table>
         </div>
       )}
-
-      <button
-        className="btn btn-outline btn-primary flex items-center gap-2"
-        onClick={() => setIsOpen(true)}
-      >
-        <FaFileAlt />
-        Teaching Evaluation Report
-      </button>
 
       {/* feeback Modal */}
       {isOpen && (

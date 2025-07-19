@@ -45,17 +45,15 @@ const PopularClasses = () => {
                 {cls.title}
               </h3>
               <p className="text-sm text-gray-500">
-                {" "}
                 <strong>Instructor:</strong> {cls.name}
               </p>
               <p className="text-sm text-gray-500">
-                {" "}
-                <strong>Price:</strong> {cls.price}
+                <strong>Price:</strong> ${cls.price}
               </p>
               <p className="text-sm text-gray-600 mb-2">{cls.description}</p>
-              <p className="flex items-center text-sm rounded-xl">
-                <FaUsers className="mr-1" />{" "}
-                <strong>{cls.totalEnrolled} Enrolled</strong>
+              <p className="flex items-center text-sm font-medium rounded-xl">
+                <FaUsers className="mr-1" />
+                {cls.totalEnrolled} Enrolled
               </p>
               <Link to={`/classes-details/${cls._id}`}>
                 <button className="btn w-full mt-2 btn-primary">Enroll</button>

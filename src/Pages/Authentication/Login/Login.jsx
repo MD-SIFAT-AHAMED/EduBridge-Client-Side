@@ -117,9 +117,9 @@ const Login = () => {
           Register
         </Link>
       </p>
-      <p className="place-items-center">
+      <div className="place-items-center">
         <SignInGoogle />
-      </p>
+      </div>
     </div>
   );
 };
