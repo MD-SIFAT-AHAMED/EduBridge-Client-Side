@@ -4,6 +4,7 @@ import PartnerSlider from "../PartnerSlider/PartnarSlider";
 import TeacherInspiring from "../TeacherInspiring/TeacherInspiring";
 import HowItWorks from "../HowItWorks/HowItWorks";
 import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
+import WebsiteStats from "../WebsiteStats/WebsiteStats";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <PartnerSlider />
       <WhyChooseUs />
       <TeacherInspiring />
+      <WebsiteStats/>
       <HowItWorks />
     </div>
   );
