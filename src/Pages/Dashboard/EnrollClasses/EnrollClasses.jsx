@@ -24,26 +24,27 @@ const EnrollClasses = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {enrolledClasses.map((cls) => (
-          <div
-            key={cls._id}
-            className="card shadow-xl bg-white  rounded-xl overflow-hidden"
-          >
-            <figure>
-              <img
-                src={cls.image}
-                alt={cls.title}
-                className="w-full h-48 object-cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title text-xl">{cls.title}</h2>
-              <p className="text-gray-600">Instructor: {cls.teacher}</p>
-              <Link to={`/dashboard/enrolled-classes-details/${cls.classId}`}>
-                <button className="btn btn-primary btn-sm w-full">
-                  Continue
-                </button>
-              </Link>
-            </div>
+          <div className="bg-base-100 shadow-md p-4 rounded-lg space-y-1 flex flex-col justify-between">
+            <img
+              src={cls.image}
+              alt={cls.title}
+              className="w-full h-40 object-cover rounded-md mb-4"
+            />
+            <h3
+              className="text-xl font-semibold capitalize truncate"
+              title={cls.title}
+            >
+              {cls.title}
+            </h3>
+            <p className="text-sm text-gray-500">
+              {" "}
+              <strong>Instructor:</strong> {cls.teacher}
+            </p>
+            <Link to={`/dashboard/enrolled-classes-details/${cls.classId}`}>
+              <button className="btn btn-primary mt-2 btn-sm w-full">
+                Continue
+              </button>
+            </Link>
           </div>
         ))}
       </div>

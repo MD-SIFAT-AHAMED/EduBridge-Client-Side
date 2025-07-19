@@ -1,5 +1,5 @@
 import React from "react";
-import teacher from "../../../assets/partnerLogo/teacher.jpg";
+import teacher from "../../../assets/partnerLogo/inspiring.jpg";
 import { Link } from "react-router";
 const TeacherInspiring = () => {
   return (

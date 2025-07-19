@@ -21,7 +21,7 @@ const WebsiteStats = () => {
       {/* Left: Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Total Users */}
-        <div className="card bg-base-200 shadow-md text-center">
+        <div className="card bg-base-100 shadow-md text-center">
           <div className="card-body items-center">
             <FaUsers className="text-3xl text-blue-400" />
             <h2 className="text-xl font-bold">Users</h2>
@@ -30,7 +30,7 @@ const WebsiteStats = () => {
         </div>
 
         {/* Total Classes */}
-        <div className="card bg-base-200 shadow-md text-center">
+        <div className="card bg-base-100 shadow-md text-center">
           <div className="card-body items-center">
             <FaChalkboardTeacher className="text-3xl text-success" />
             <h2 className="text-xl font-bold"> Classes</h2>
@@ -39,7 +39,7 @@ const WebsiteStats = () => {
         </div>
 
         {/* Total Enrollments */}
-        <div className="card bg-base-200 shadow-md text-center">
+        <div className="card bg-base-100 shadow-md text-center">
           <div className="card-body items-center">
             <FaUserGraduate className="text-3xl text-warning" />
             <h2 className="text-xl font-bold">Enrollments</h2>
