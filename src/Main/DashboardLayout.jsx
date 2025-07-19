@@ -16,7 +16,7 @@ import useUserRole from "../Hooks/useUserRole";
 const DashboardLayout = () => {
   const { role, roleLoading } = useUserRole();
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open inter-font">
       {/* Drawer Toggle for Small Devices */}
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
 

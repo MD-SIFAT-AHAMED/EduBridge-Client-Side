@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const TeacherClasses = () => {
   const { user } = useAuth();
@@ -10,6 +11,7 @@ const TeacherClasses = () => {
   const queryClient = useQueryClient();
   const [selectedClass, setSelectedClass] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
+  const navigate = useNavigate();
 
   // Fetch teacher's own classes
   const { data: myClasses = [], isLoading } = useQuery({
@@ -122,6 +124,7 @@ const TeacherClasses = () => {
                   Delete
                 </button>
                 <button
+                  onClick={() => navigate(`/dashboard/see-details/${cls._id}`)}
                   disabled={cls.status !== "approved"}
                   className="btn btn-sm text-white btn-info"
                 >

@@ -23,6 +23,7 @@ import ClassesDetails from "../Pages/Classes/ClassesDetails/ClassesDetails";
 import Payment from "../Pages/Payment/Payment/Payment";
 import EnrollClasses from "../Pages/Dashboard/EnrollClasses/EnrollClasses";
 import EnrollClassDetails from "../Pages/Dashboard/EnrollClassDetails/EnrollClassDetails";
+import SeeDetails from "../Pages/Dashboard/SeeDetails/SeeDetails";
 
 const router = createBrowserRouter([
   {
@@ -136,6 +137,14 @@ const router = createBrowserRouter([
         element: (
           <TeacherRoute>
             <TeacherClasses />
+          </TeacherRoute>
+        ),
+      },
+      {
+        path: "see-details/:classId",
+        element: (
+          <TeacherRoute>
+            <SeeDetails />
           </TeacherRoute>
         ),
       },
