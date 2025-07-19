@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { FaFileAlt, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import useAuth from "../../../Hooks/useAuth";
+import Pagination from "../../../Component/Pagination/Pagination";
 
 const EnrollClassDetails = () => {
   const { id } = useParams(); // classId from route
@@ -19,15 +20,23 @@ const EnrollClassDetails = () => {
 
   const [inputValues, setInputValues] = useState({}); // key: assignmentId, value: submissionLink
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
   // Fetch assignments for this class
-  const { data: assignments = [], isLoading } = useQuery({
-    queryKey: ["class-assignments", id],
+  const { data = {}, isLoading } = useQuery({
+    queryKey: ["class-assignments", id, currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/assignments/${id}`);
+      const res = await axiosSecure.get(
+        `/assignments/${id}?page=${currentPage}&limit=${itemsPerPage}`
+      );
       return res.data;
     },
   });
-  console.log(assignments);
+  const assignments = data.assingmentDeatils || [];
+  const totalCount = data.totalCount || 0;
+
+  const totalPages = Math.ceil(totalCount / itemsPerPage);
 
   // Mutation for submitting assignment
   const { mutateAsync: submitAssignment, isPending } = useMutation({
@@ -134,7 +143,7 @@ const EnrollClassDetails = () => {
             <tbody>
               {assignments.map((assignment, index) => (
                 <tr key={assignment._id}>
-                  <td>{index + 1}</td>
+                  <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                   <td>{assignment.title}</td>
                   <td>{assignment.description}</td>
                   <td>{new Date(assignment.deadline).toLocaleDateString()}</td>
@@ -169,6 +178,13 @@ const EnrollClassDetails = () => {
           </table>
         </div>
       )}
+
+      {/* Pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
 
       {/* feeback Modal */}
       {isOpen && (
