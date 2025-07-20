@@ -4,24 +4,35 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import Pagination from "../../../Component/Pagination/Pagination";
 
 const TeacherClasses = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  const [selectedClass, setSelectedClass] = useState(null);
-  const [deleteId, setDeleteId] = useState(null);
   const navigate = useNavigate();
 
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
   // Fetch teacher's own classes
-  const { data: myClasses = [], isLoading } = useQuery({
-    queryKey: ["teacherClasses", user?.email],
+  const { data = {}, isLoading } = useQuery({
+    queryKey: ["teacherClasses", user?.email, currentPage],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/classes/teacher/${user.email}`);
+      const res = await axiosSecure.get(
+        `/classes/teacher/${user.email}?page=${currentPage}&limit=${itemsPerPage}`
+      );
       return res.data;
     },
   });
+
+  const myClasses = data.result || [];
+  const total = data.total || 0;
+
+  const totalPages = Math.ceil(total / itemsPerPage);
 
   // Update Mutation
   const updateMutation = useMutation({
@@ -73,7 +84,7 @@ const TeacherClasses = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {myClasses.map((cls) => (
-          <div key={cls._id} className="card bg-base-100 shadow-xl">
+          <div key={cls._id} className="card bg-base-100 shadow">
             <figure>
               <img
                 src={cls.image}
@@ -134,6 +145,15 @@ const TeacherClasses = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="mt-10">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(prev) => setCurrentPage(prev)}
+        />
       </div>
 
       {/* Update Modal */}
