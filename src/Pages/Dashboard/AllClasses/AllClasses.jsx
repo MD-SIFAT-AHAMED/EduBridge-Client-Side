@@ -3,20 +3,29 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 import { Link } from "react-router";
+import Pagination from "../../../Component/Pagination/Pagination";
+import { useState } from "react";
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   // Get all classes (only approved & pending)
-  const { data: classes = [], isLoading } = useQuery({
-    queryKey: ["allClasses"],
+  const { data = {}, isLoading } = useQuery({
+    queryKey: ["allClasses", currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get("/classes");
+      const res = await axiosSecure.get(
+        `/classes?page=${currentPage}&limit=${itemsPerPage}`
+      );
       return res.data;
     },
   });
-console.log(classes)
+
+  const classes = data.classes || [];
+  const total = data.total || 0;
+  const totalPages = Math.ceil(total / itemsPerPage);
 
   //  Mutation for status update (approve/reject)
   const statusMutation = useMutation({
@@ -45,6 +54,7 @@ console.log(classes)
         <table className="table table-zebra w-full">
           <thead>
             <tr>
+              <th>No</th>
               <th>Image</th>
               <th>Title</th>
               <th>Email</th>
@@ -55,8 +65,9 @@ console.log(classes)
           </thead>
 
           <tbody>
-            {classes.map((cls) => (
+            {classes.map((cls, inx) => (
               <tr key={cls._id}>
+                <td>{(currentPage - 1) * itemsPerPage + inx + 1}</td>
                 <td>
                   <img
                     src={cls.image}
@@ -81,7 +92,7 @@ console.log(classes)
                 <td className="flex flex-col lg:flex-row gap-2">
                   {/* Approve Button */}
                   <button
-                    className="btn btn-sm btn-success"
+                    className="btn btn-xs lg:btn-sm btn-success"
                     disabled={cls.status === "approved"}
                     onClick={() => handleStatusChange(cls._id, "approved")}
                   >
@@ -90,7 +101,7 @@ console.log(classes)
 
                   {/* Reject Button */}
                   <button
-                    className="btn btn-sm btn-error"
+                    className="btn btn-xs lg:btn-sm btn-error"
                     disabled={cls.status === "rejected"}
                     onClick={() => handleStatusChange(cls._id, "rejected")}
                   >
@@ -99,10 +110,12 @@ console.log(classes)
 
                   {/* Progress Button (enabled only if approved) */}
                   <button
-                    className="btn btn-sm btn-info"
+                    className="btn btn-xs lg:btn-sm btn-info"
                     disabled={cls.status !== "approved"}
                   >
-                    <Link to={`/dashboard/class-progress/${cls._id}`}>Progress</Link>
+                    <Link to={`/dashboard/class-progress/${cls._id}`}>
+                      Progress
+                    </Link>
                   </button>
                 </td>
               </tr>
@@ -110,6 +123,13 @@ console.log(classes)
           </tbody>
         </table>
       </div>
+
+      {/* pagination */}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={(prev) => setCurrentPage(prev)}
+      />
     </div>
   );
 };
