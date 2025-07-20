@@ -3,21 +3,30 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Pagination from "../../../Component/Pagination/Pagination";
 
 const Users = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  
   // Fetch all users (or filtered)
-  const { data: users = [], isPending } = useQuery({
-    queryKey: ["users", searchTerm],
+  const { data = {}, isPending } = useQuery({
+    queryKey: ["users", searchTerm, currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users?search=${searchTerm}`);
+      const res = await axiosSecure.get(
+        `/users?search=${searchTerm}&page=${currentPage}&limit=${itemsPerPage}`
+      );
       return res.data;
     },
   });
+
+  const users = data.users || [];
+  const total = data.total || 0;
+  const totalPages = Math.ceil(total / itemsPerPage);
 
   // Mutation to promote user
   const promoteMutation = useMutation({
@@ -42,7 +51,7 @@ const Users = () => {
     }
   };
   if (isPending) return <LoadingSpinner />;
-  
+
   return (
     <section className="p-6">
       <h2 className="text-2xl font-bold mb-4">All Users</h2>
@@ -144,6 +153,12 @@ const Users = () => {
           </div>
         </dialog>
       )}
+      {/* pagination */}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={(prev) => setCurrentPage(prev)}
+      />
     </section>
   );
 };
