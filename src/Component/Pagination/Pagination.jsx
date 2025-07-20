@@ -8,7 +8,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   }
   console.log(pageNumbers);
   return (
-    <div className="flex justify-center mt-4 space-x-2">
+    <div className="flex justify-center mt-10 space-x-2">
       <button
         className="btn btn-sm"
         disabled={currentPage === 1}

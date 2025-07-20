@@ -6,17 +6,29 @@ import {
 } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Pagination from "../../../Component/Pagination/Pagination";
+import { useState } from "react";
+import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 
 const TeacherRequest = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  const { data: requests = [] } = useQuery({
-    queryKey: ["teacherRequests"],
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const { data = {}, isPending } = useQuery({
+    queryKey: ["teacherRequests", currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get("/teacher-requests");
+      const res = await axiosSecure.get(
+        `/teacher-requests?page=${currentPage}&limit=${itemsPerPage}`
+      );
       return res.data;
     },
   });
+  const requests = data.teachers || [];
+  const total = data.total || 0;
+
+  const totalPages = Math.ceil(total / itemsPerPage);
 
   const statusMutation = useMutation({
     mutationFn: async ({ email, status }) => {
@@ -36,6 +48,8 @@ const TeacherRequest = () => {
       }
     },
   });
+
+  if (isPending) return <LoadingSpinner />;
 
   return (
     <section className="p-6 bg-base-100 min-h-screen">
@@ -124,6 +138,12 @@ const TeacherRequest = () => {
           </tbody>
         </table>
       </div>
+      {/* pagination */}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={(prev) => setCurrentPage(prev)}
+      />
     </section>
   );
 };

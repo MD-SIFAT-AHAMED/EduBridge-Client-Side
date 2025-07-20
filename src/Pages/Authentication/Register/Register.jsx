@@ -39,6 +39,7 @@ const Register = () => {
       displayName: data.name,
       photoURL: profieImg,
     };
+    console.log(userData)
 
     const userInfo = {
       name: data.name,

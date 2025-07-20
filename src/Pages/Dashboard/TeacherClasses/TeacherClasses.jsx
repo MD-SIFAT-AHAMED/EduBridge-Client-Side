@@ -15,7 +15,7 @@ const TeacherClasses = () => {
   const [selectedClass, setSelectedClass] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   // Fetch teacher's own classes
   const { data = {}, isLoading } = useQuery({
