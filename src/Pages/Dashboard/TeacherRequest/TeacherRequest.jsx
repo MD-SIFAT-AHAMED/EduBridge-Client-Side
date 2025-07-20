@@ -100,7 +100,7 @@ const TeacherRequest = () => {
                     {req.status}
                   </span>
                 </td>
-                <td className="space-x-2 space-y-1 *:text-gray-900">
+                <td className="space-x-2 flex mt-2 md:mt-0 space-y-1 *:text-gray-900">
                   <button
                     onClick={() =>
                       statusMutation.mutate({

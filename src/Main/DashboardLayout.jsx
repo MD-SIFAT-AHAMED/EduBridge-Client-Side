@@ -74,6 +74,12 @@ const DashboardLayout = () => {
                   My Enroll Class
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/my-payment">
+                  <FaBook className="mr-2" />
+                  My Payment
+                </NavLink>
+              </li>
             </>
           )}
 

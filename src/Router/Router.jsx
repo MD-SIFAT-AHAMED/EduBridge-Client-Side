@@ -25,6 +25,7 @@ import EnrollClasses from "../Pages/Dashboard/EnrollClasses/EnrollClasses";
 import EnrollClassDetails from "../Pages/Dashboard/EnrollClassDetails/EnrollClassDetails";
 import SeeDetails from "../Pages/Dashboard/SeeDetails/SeeDetails";
 import ClassProgress from "../Pages/Dashboard/ClassProgress/ClassProgress";
+import MyPayment from "../Pages/Dashboard/MyPayment/MyPayment";
 
 const router = createBrowserRouter([
   {
@@ -112,6 +113,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <EnrollClasses />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-payment",
+        element: (
+          <PrivateRoute>
+            <MyPayment />
           </PrivateRoute>
         ),
       },

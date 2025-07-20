@@ -12,7 +12,7 @@ const Users = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  
+
   // Fetch all users (or filtered)
   const { data = {}, isPending } = useQuery({
     queryKey: ["users", searchTerm, currentPage],
@@ -53,7 +53,7 @@ const Users = () => {
   if (isPending) return <LoadingSpinner />;
 
   return (
-    <section className="p-6">
+    <section className="p-4">
       <h2 className="text-2xl font-bold mb-4">All Users</h2>
 
       {/* Search Bar */}
@@ -68,9 +68,9 @@ const Users = () => {
       </div>
 
       {/* User Table */}
-      <div className="overflow-x-auto rounded-xl shadow">
+      <div className="overflow-x-auto rounded shadow">
         <table className="table w-full table-zebra">
-          <thead className="bg-base-200 text-sm text-gray-700">
+          <thead className="text-sm bg-base-200 text-gray-700">
             <tr>
               <th>No</th>
               <th>Image</th>
@@ -95,7 +95,7 @@ const Users = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td className="capitalize">{user.role || "user"}</td>
-                <td>
+                <td className="flex">
                   {user.role === "admin" ? (
                     <button className="btn btn-sm btn-outline" disabled>
                       Already Admin

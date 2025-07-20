@@ -89,10 +89,10 @@ const AllClasses = () => {
                     {cls.status}
                   </span>
                 </td>
-                <td className="flex flex-col lg:flex-row gap-2">
+                <td className=" flex mt-2 md:mt-0 flex-row gap-2">
                   {/* Approve Button */}
                   <button
-                    className="btn btn-xs lg:btn-sm btn-success"
+                    className="btn btn-sm btn-success"
                     disabled={cls.status === "approved"}
                     onClick={() => handleStatusChange(cls._id, "approved")}
                   >
@@ -101,7 +101,7 @@ const AllClasses = () => {
 
                   {/* Reject Button */}
                   <button
-                    className="btn btn-xs lg:btn-sm btn-error"
+                    className="btn btn-sm btn-error"
                     disabled={cls.status === "rejected"}
                     onClick={() => handleStatusChange(cls._id, "rejected")}
                   >
@@ -110,7 +110,7 @@ const AllClasses = () => {
 
                   {/* Progress Button (enabled only if approved) */}
                   <button
-                    className="btn btn-xs lg:btn-sm btn-info"
+                    className="btn btn-sm btn-info"
                     disabled={cls.status !== "approved"}
                   >
                     <Link to={`/dashboard/class-progress/${cls._id}`}>

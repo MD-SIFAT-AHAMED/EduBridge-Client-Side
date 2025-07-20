@@ -2,16 +2,28 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 import useAxios from "../../../Hooks/useAxios";
 import { Link } from "react-router";
+import Pagination from "../../../Component/Pagination/Pagination";
+import { useState } from "react";
 
 const AllClasses = () => {
   const axiosInstance = useAxios();
-  const { data: approvedClasses = [], isLoading } = useQuery({
-    queryKey: ["approvedClasses"],
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const { data = {}, isLoading } = useQuery({
+    queryKey: ["approvedClasses", currentPage],
     queryFn: async () => {
-      const res = await axiosInstance.get("/classes/approved");
+      const res = await axiosInstance.get(
+        `/classes/approved?page=${currentPage}&limit=${itemsPerPage}`
+      );
       return res.data;
     },
   });
+
+  const approvedClasses = data.result || [];
+  const totalCount = data.total || 0;
+
+  const totalPages = Math.ceil(totalCount / itemsPerPage);
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -52,6 +64,12 @@ const AllClasses = () => {
           </div>
         ))}
       </div>
+      {/* Pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
     </section>
   );
 };
