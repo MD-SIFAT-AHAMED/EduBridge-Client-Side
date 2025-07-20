@@ -5,6 +5,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import Pagination from "../../../Component/Pagination/Pagination";
+import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 
 const TeacherClasses = () => {
   const { user } = useAuth();
@@ -76,10 +77,10 @@ const TeacherClasses = () => {
     deleteMutation.mutate(deleteId);
   };
 
-  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
-    <section className="px-4 py-10 min-h-screen bg-base-200">
+    <section className="px-4 py-10 min-h-screen bg-base-100">
       <h2 className="text-2xl font-bold mb-6 text-center">My Classes</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

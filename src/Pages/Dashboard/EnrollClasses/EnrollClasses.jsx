@@ -3,18 +3,28 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 import { Link } from "react-router";
+import Pagination from "../../../Component/Pagination/Pagination";
+import { useState } from "react";
 
 const EnrollClasses = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const { data: enrolledClasses = [], isLoading } = useQuery({
-    queryKey: ["enrolledClasses"],
+  const { data = {}, isLoading } = useQuery({
+    queryKey: ["enrolledClasses", currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/enroll/classes/${user?.email}`);
+      const res = await axiosSecure.get(
+        `/enroll/classes/${user?.email}?page=${currentPage}&limit=${itemsPerPage}`
+      );
       return res.data;
     },
   });
+  const enrolledClasses = data.enrollData || [];
+  const total = data.total || 0;
+
+  const totalPages = Math.ceil(total / itemsPerPage);
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -48,6 +58,12 @@ const EnrollClasses = () => {
           </div>
         ))}
       </div>
+      {/* pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
     </div>
   );
 };

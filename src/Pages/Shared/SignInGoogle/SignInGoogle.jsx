@@ -24,8 +24,7 @@ const SignInGoogle = () => {
           create_at: new Date().toISOString(),
           last_log_in: new Date().toISOString(),
         };
-        const userRes = await axiosInstance.post("/users", userInfo);
-        console.log({userRes})
+        await axiosInstance.post("/users", userInfo);
 
         toast.success("Login Successfuly");
         navigate(location.state?.from || "/");

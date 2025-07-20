@@ -24,13 +24,16 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-14 px-4 md:px-10 bg-white">
+    <section 
+    
+    className="py-14 px-4 md:px-10 bg-white">
       <h2 className="text-3xl font-bold text-center mb-10">
         How EduBridge Works
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {steps.map((step, index) => (
           <div
+           data-aos="zoom-in-up"
             key={index}
             className="card bg-base-100 p-6 text-center shadow-md"
           >

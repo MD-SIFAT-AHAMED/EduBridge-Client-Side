@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="bg-white py-16 px-4 md:px-10">
+    <section data-aos="zoom-in-up" className="bg-white py-16 px-4 md:px-10">
       <h2 className="text-3xl font-bold text-center mb-10">
         Why Choose EduBridge?
       </h2>
@@ -33,6 +33,7 @@ const WhyChooseUs = () => {
         {reasons.map((item, index) => (
           <div
             key={index}
+            data-aos="zoom-in-up"
             className="bg-white p-6 rounded-lg shadow-md text-center"
           >
             <div className="flex justify-center mb-4">{item.icon}</div>

@@ -1,7 +1,8 @@
 import Slider from "react-slick";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 const CommentSection = () => {
   const axiosInstance = useAxios();
 
@@ -13,39 +14,23 @@ const CommentSection = () => {
     },
   });
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768, 
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
   return (
     <div className="px-4 py-10 w-full bg-base-100 mx-auto">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
         What Our Students Say
       </h2>
 
-      <Slider {...settings}>
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={1}
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+      >
         {comments.map((comment, index) => (
-          <div key={index}>
+          <SwiperSlide key={index}>
             <div
               className="bg-base-100 p-6 shadow-md text-center h-[220px] flex flex-col relative"
               title={comment.description}
@@ -74,9 +59,9 @@ const CommentSection = () => {
                 "{comment.description}"
               </p>
             </div>
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 };

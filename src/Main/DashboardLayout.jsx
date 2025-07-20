@@ -12,9 +12,15 @@ import {
   FaClipboardList,
 } from "react-icons/fa";
 import useUserRole from "../Hooks/useUserRole";
+import LoadingSpinner from "../Pages/Shared/LoadingSpinner/LoadingSpinner";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useUserRole();
+  if(roleLoading)
+  {
+    return <LoadingSpinner/>
+  }
+
   return (
     <div className="drawer lg:drawer-open inter-font">
       {/* Drawer Toggle for Small Devices */}
@@ -26,7 +32,7 @@ const DashboardLayout = () => {
           {/* Drawer Toggle Button */}
           <label
             htmlFor="dashboard-drawer"
-            className="btn btn-ghost text-white drawer-button lg:hidden"
+            className="p-3 bg-primary/0 text-white mr-2  lg:hidden"
           >
             <FaBars size={20} />
           </label>

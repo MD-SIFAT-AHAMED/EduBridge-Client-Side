@@ -22,6 +22,7 @@ const Register = () => {
   const location = useLocation();
   const axiosInstance = useAxios();
 
+
   // upload image to ImgBB
   const uploadImageImgBB = async (e) => {
     const image = e.target.files[0];
@@ -39,7 +40,7 @@ const Register = () => {
       displayName: data.name,
       photoURL: profieImg,
     };
-    console.log(userData)
+    console.log(userData);
 
     const userInfo = {
       name: data.name,
@@ -53,8 +54,7 @@ const Register = () => {
       .then(() => {
         updateUserData(userData)
           .then(async () => {
-            const res = await axiosInstance.post("/users", userInfo);
-            console.log(res);
+            await axiosInstance.post("/users", userInfo);
             toast.success("Register Successfuly");
             navigate(location.state?.from || "/");
           })

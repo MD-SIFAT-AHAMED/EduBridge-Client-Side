@@ -12,7 +12,7 @@ const MyPayment = () => {
   const itemsPerPage = 10;
 
   const { data = {}, isLoading } = useQuery({
-    queryKey: ["payments", user?.email],
+    queryKey: ["payments", user?.email,currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/payments?email=${user?.email}&page=${currentPage}&limit=${itemsPerPage}`

@@ -63,7 +63,7 @@ const AddClass = () => {
   };
 
   return (
-    <section className="px-4 py-10 min-h-screen bg-base-200">
+    <section className="px-4 py-10 min-h-screen bg-base-100">
       <div className="max-w-5xl mx-auto bg-base-100 p-8 rounded-lg shadow-md">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center divider">
           Add a New Class

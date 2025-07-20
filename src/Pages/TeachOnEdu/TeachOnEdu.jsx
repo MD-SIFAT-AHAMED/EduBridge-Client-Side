@@ -70,9 +70,9 @@ const TeachOnEdu = () => {
   return (
     <section
       style={{ minHeight: "calc(100vh - 342px)" }}
-      className="bg-base-200 px-4 py-16"
+      className="bg-base-100 px-4 py-16"
     >
-      {/* ✅ Already a Teacher */}
+      {/* Already a Teacher */}
       {dbUser?.status === "teacher" && (
         <div className="col-span-2 text-center">
           <p className="text-success text-2xl md:text-3xl lg:text-4xl font-bold">
@@ -84,7 +84,7 @@ const TeachOnEdu = () => {
         </div>
       )}
 
-      {/* ✅ Application Pending */}
+      {/* Application Pending */}
       {dbUser?.status === "pending" && (
         <div className="col-span-2 text-center">
           <p className="text-info text-xl md:text-2xl font-semibold">
@@ -96,7 +96,7 @@ const TeachOnEdu = () => {
         </div>
       )}
 
-      {/* ✅ Rejected — Show Request Again Button */}
+      {/* Rejected — Show Request Again Button */}
       {dbUser?.status === "rejected" && (
         <div className="col-span-2 text-center space-y-4">
           <p className="text-error text-xl md:text-2xl font-semibold">

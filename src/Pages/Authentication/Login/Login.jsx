@@ -6,6 +6,7 @@ import SignInGoogle from "../../Shared/SignInGoogle/SignInGoogle";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
+
 const Login = () => {
   const {
     register,
@@ -18,9 +19,10 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const queryClient = useQueryClient();
+
   const onSubmit = (data) => {
     signIn(data.email, data.password)
-      .then(() => {
+      .then(async () => {
         queryClient.removeQueries(); // Clear old cache
         queryClient.invalidateQueries(); // Refetch everything fresh
         toast.success("Login Successfuly");

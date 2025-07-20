@@ -3,7 +3,9 @@ import teacher from "../../../assets/partnerLogo/inspiring.jpg";
 import { Link } from "react-router";
 const TeacherInspiring = () => {
   return (
-    <div className="hero bg-base-100 px-4 md:px-10">
+    <div 
+     data-aos="zoom-in-up"
+    className="hero bg-base-100 px-4 md:px-10">
       <div className="hero-content flex-col lg:flex-row gap-10">
         {/* Left - Image */}
         <img

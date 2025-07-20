@@ -6,10 +6,14 @@ import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { useQueryClient } from "@tanstack/react-query";
+import useUserRole from "../../../Hooks/useUserRole";
+
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { role } = useUserRole();
+  console.log(role);
 
   const handleLogout = () => {
     logOut()
@@ -17,6 +21,7 @@ const Navbar = () => {
         navigate("/");
         queryClient.removeQueries();
         toast.success("Logout Success");
+        localStorage.removeItem("role");
         localStorage.removeItem("access-token");
       })
       .catch((err) => {
@@ -29,7 +34,9 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `btn btn-ghost text-base ${isActive ? "text-primary" : ""} `
+          `flex gap-1 items-center font-semibold text-base ${
+            isActive ? "text-primary" : ""
+          } `
         }
       >
         <FaHome className="mr-1" /> Home
@@ -37,7 +44,9 @@ const Navbar = () => {
       <NavLink
         to="/classes"
         className={({ isActive }) =>
-          `btn btn-ghost text-base ${isActive ? "text-primary" : ""} `
+          ` flex gap-1 items-center font-semibold text-base ${
+            isActive ? "text-primary" : ""
+          } `
         }
       >
         <FaBookOpen className="mr-1" /> All Classes
@@ -45,7 +54,9 @@ const Navbar = () => {
       <NavLink
         to="/teachOnEdu"
         className={({ isActive }) =>
-          `btn btn-ghost text-base ${isActive ? "text-primary" : ""} `
+          `flex gap-1 items-center font-semibold text-base ${
+            isActive ? "text-primary" : ""
+          } `
         }
       >
         <FaChalkboardTeacher className="mr-1" /> Teach on EduBridge
@@ -63,7 +74,7 @@ const Navbar = () => {
       {/* Center - Nav Links */}
       {!loading && (
         <div className="navbar-center hidden lg:flex">
-          <div className="flex gap-2">{navLinks}</div>
+          <div className="flex gap-6">{navLinks}</div>
         </div>
       )}
 
@@ -108,7 +119,7 @@ const Navbar = () => {
                   <p className="font-bold">{user.displayName}</p>
                 </li>
                 <li>
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link to="/dashboard/profile">Dashboard</Link>
                 </li>
                 <li>
                   <button onClick={handleLogout} className="text-red-600">
@@ -126,7 +137,7 @@ const Navbar = () => {
         <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex items-center justify-between p-2">
           {/* Hamburger button (left side) */}
-          <label htmlFor="mobile-drawer" className="btn">
+          <label htmlFor="mobile-drawer" className="p-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -149,7 +160,7 @@ const Navbar = () => {
         <div className="drawer-side z-10">
           <label htmlFor="mobile-drawer" className="drawer-overlay"></label>
 
-          <ul className="menu *:justify-start p-4  min-h-full bg-base-100 text-base-content">
+          <ul className="menu *:justify-start w-3/5  min-h-full bg-base-100 gap-3 p-6 text-base-content">
             {/* Sidebar content here */}
 
             <EduBridegeLogo />
