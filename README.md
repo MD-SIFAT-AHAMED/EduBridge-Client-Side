@@ -5,7 +5,7 @@ EduBridge is a full-stack educational platform where:
 - Students can purchase classes, learn, submit assignments, and give reviews.
 - Admins manage users, classes, and overall platform access.
 
-> **Live Demo**: [Your Live Link Here]  
+> **Live Demo**: https://edu-bridge-6a75b.web.app/  
 > **Admin Login**  
 > ✉️ Email: `sifat@gmail.com`  
 > 🔑 Password: `12345Aa`
