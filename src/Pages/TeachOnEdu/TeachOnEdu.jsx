@@ -28,7 +28,6 @@ const TeachOnEdu = () => {
       return res.data;
     },
   });
- 
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -65,12 +64,12 @@ const TeachOnEdu = () => {
     });
     reset();
   };
-   if (isPending) return <LoadingSpinner />;
+  if (isPending) return <LoadingSpinner />;
 
   return (
     <section
-      style={{ minHeight: "calc(100vh - 342px)" }}
-      className="bg-base-100 px-4 py-16"
+      style={{ minHeight: "calc(100vh - 340px)" }}
+      className="bg-base-100 flex justify-center items-center px-4 py-6"
     >
       {/* Already a Teacher */}
       {dbUser?.status === "teacher" && (
@@ -116,7 +115,7 @@ const TeachOnEdu = () => {
 
       {!dbUser.status && (
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div className="bg-base-100 p-8 rounded-xl">
+          <div className="bg-base-100 p-4 md:p-8 rounded-xl">
             <h2 className="text-2xl font-bold mb-6">Teach on EduBridge</h2>
             <figure>
               <img src={user?.photoURL} className="w-25 mb-5" alt="userPhoto" />

@@ -18,7 +18,7 @@ const logos = [
 ];
 const PartnerSlider = () => {
   return (
-    <div className=" py-10 bg-base-100">
+    <div className="py-5 md:py-10 bg-base-100">
       <h2 className="text-2xl md:text-[28px] text-center font-bold my-10">
         Sponsored by
       </h2>

@@ -7,13 +7,16 @@ const ClassesDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
 
-  const { data: classData, isLoading } = useQuery({
+  const { data: classData=[], isLoading } = useQuery({
     queryKey: ["classDetails", id],
+    enabled: !!id,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/classes/${id}`);
+      const res = await axiosSecure.get(`/classes/details/${id}`);
       return res.data;
     },
   });
+  // console.log(classData.image)
+  console.log(id)
 
   if (isLoading) return <LoadingSpinner />;
 

@@ -5,7 +5,7 @@ import banner3 from "../../../assets/BannerImg/banner3.jpg";
 
 const Banner = () => {
   return (
-    <div>
+    <div >
       <Carousel
         autoPlay={true}
         showThumbs={false}
@@ -13,11 +13,11 @@ const Banner = () => {
         showStatus={false}
         showArrows={false}
       >
-        <div className="relative w-full ">
+        <div className="relative w-full">
           <img
             src={banner1}
             alt="Banner"
-            className="w-full h-auto object-cover"
+            className="w-full h-60 md:h-auto object-cover"
           />
 
           <div className="absolute inset-0 flex flex-col lg:items-start justify-center bg-black/40 text-white p-10  md:pl-20">
@@ -34,7 +34,7 @@ const Banner = () => {
           <img
             src={banner3}
             alt="Banner"
-            className="w-full h-auto object-cover"
+            className="w-full h-60 md:h-auto  object-cover"
           />
           <div className="absolute inset-0 flex flex-col lg:items-start justify-center  bg-black/40 text-white p-10 md:pl-20">
             <h3 className="text-lg md:text-4xl font-bold mb-2">

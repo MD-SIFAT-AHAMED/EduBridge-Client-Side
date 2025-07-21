@@ -12,7 +12,7 @@ const MyPayment = () => {
   const itemsPerPage = 10;
 
   const { data = {}, isLoading } = useQuery({
-    queryKey: ["payments", user?.email,currentPage],
+    queryKey: ["payments", user?.email, currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/payments?email=${user?.email}&page=${currentPage}&limit=${itemsPerPage}`
@@ -30,32 +30,34 @@ const MyPayment = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="overflow-x-auto p-4">
+    <div className="p-4">
       <h2 className="text-2xl font-semibold mb-4">My Payments</h2>
-      <table className="table table-zebra w-full">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Class Title</th>
-            <th>Transaction ID</th>
-            <th>Amount</th>
-            <th>Payment Method</th>
-            <th>Paid At</th>
-          </tr>
-        </thead>
-        <tbody>
-          {payments.map((payment, index) => (
-            <tr key={payment._id}>
-              <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
-              <td>{payment.classTitle}</td>
-              <td className="text-xs break-all">{payment.transactionId}</td>
-              <td>${payment.amount}</td>
-              <td>{payment.paymentMethod}</td>
-              <td>{new Date(payment.paid).toLocaleString()}</td>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Class Title</th>
+              <th>Transaction ID</th>
+              <th>Amount</th>
+              <th>Payment Method</th>
+              <th>Paid At</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {payments.map((payment, index) => (
+              <tr key={payment._id}>
+                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                <td>{payment.classTitle}</td>
+                <td className="text-xs break-all">{payment.transactionId}</td>
+                <td>${payment.amount}</td>
+                <td>{payment.paymentMethod}</td>
+                <td>{new Date(payment.paid).toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {/* Pagination */}
       <Pagination
         currentPage={currentPage}

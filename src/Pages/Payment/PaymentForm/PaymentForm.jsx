@@ -20,7 +20,7 @@ const PaymentForm = () => {
   const { data: classInfo, ispending } = useQuery({
     queryKey: ["classes", id],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/classes/${id}`);
+      const res = await axiosSecure.get(`/classes/details/${id}`);
       return res.data;
     },
   });

@@ -16,9 +16,9 @@ import LoadingSpinner from "../Pages/Shared/LoadingSpinner/LoadingSpinner";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useUserRole();
-  if(roleLoading)
-  {
-    return <LoadingSpinner/>
+
+  if (roleLoading) {
+    return <LoadingSpinner />;
   }
 
   return (
