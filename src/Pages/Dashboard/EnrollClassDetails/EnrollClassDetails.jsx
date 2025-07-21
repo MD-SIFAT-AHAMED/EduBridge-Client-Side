@@ -8,6 +8,7 @@ import { FaFileAlt, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import useAuth from "../../../Hooks/useAuth";
 import Pagination from "../../../Component/Pagination/Pagination";
+import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 
 const EnrollClassDetails = () => {
   const { id } = useParams(); // classId from route
@@ -35,6 +36,7 @@ const EnrollClassDetails = () => {
   });
   const assignments = data.assingmentDeatils || [];
   const totalCount = data.totalCount || 0;
+  const title = data?.enroll?.title;
 
   const totalPages = Math.ceil(totalCount / itemsPerPage);
 
@@ -87,6 +89,7 @@ const EnrollClassDetails = () => {
 
   const { mutateAsync: submitFeedback } = useMutation({
     mutationFn: async (feedbackData) => {
+       console.log(feedbackData);
       const res = await axiosSecure.post("/feedback", feedbackData);
       return res.data;
     },
@@ -103,16 +106,17 @@ const EnrollClassDetails = () => {
       ...data,
       rating,
       classId: id,
-      title: assignments[0].title,
+      title: title,
       name: user?.displayName,
       image: user?.photoURL,
     };
+
     await submitFeedback(feedbackData);
     reset();
     setIsOpen(false);
   };
 
-  if (isLoading) return <div className="text-center p-6">Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="p-6">
