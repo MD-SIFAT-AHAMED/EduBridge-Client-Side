@@ -72,7 +72,7 @@ const TeachOnEdu = () => {
       className="bg-base-100 flex justify-center items-center px-4 py-6"
     >
       {/* Already a Teacher */}
-      {dbUser?.status === "teacher" && (
+      {dbUser.status === "teacher" && (
         <div className="col-span-2 text-center">
           <p className="text-success text-2xl md:text-3xl lg:text-4xl font-bold">
             🎉 You’re already a teacher!
@@ -84,7 +84,7 @@ const TeachOnEdu = () => {
       )}
 
       {/* Application Pending */}
-      {dbUser?.status === "pending" && (
+      {dbUser.status === "pending" && (
         <div className="col-span-2 text-center">
           <p className="text-info text-xl md:text-2xl font-semibold">
             ⏳ Your application is under review
@@ -96,7 +96,7 @@ const TeachOnEdu = () => {
       )}
 
       {/* Rejected — Show Request Again Button */}
-      {dbUser?.status === "rejected" && (
+      {dbUser.status === "rejected" && (
         <div className="col-span-2 text-center space-y-4">
           <p className="text-error text-xl md:text-2xl font-semibold">
             ❌ Your application was rejected

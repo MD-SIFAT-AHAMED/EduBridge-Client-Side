@@ -14,7 +14,7 @@ const Users = () => {
   const itemsPerPage = 10;
 
   // Fetch all users (or filtered)
-  const { data = {}, isPending } = useQuery({
+  const { data = {} } = useQuery({
     queryKey: ["users", searchTerm, currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -50,7 +50,7 @@ const Users = () => {
       promoteMutation.mutate(selectedUser._id);
     }
   };
-  if (isPending) return <LoadingSpinner />;
+  // if (isPending) return <LoadingSpinner />;
 
   return (
     <section className="p-4">

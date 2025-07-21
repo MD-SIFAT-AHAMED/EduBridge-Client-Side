@@ -6,12 +6,13 @@ const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
 });
 const useAxiosSecure = () => {
-  const { user, logOut } = useAuth();
+  const { logOut } = useAuth();
   const navigate = useNavigate();
-  console.log(user);
+
   axiosSecure.interceptors.request.use(
     (config) => {
-      config.headers.Authorization = `Bearer ${user.accessToken}`;
+      const token = localStorage.getItem("token");
+      config.headers.Authorization = `Bearer ${token}`;
       return config;
     },
     (error) => {

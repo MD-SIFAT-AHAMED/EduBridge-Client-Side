@@ -21,8 +21,7 @@ const Navbar = () => {
         navigate("/");
         queryClient.removeQueries();
         toast.success("Logout Success");
-        localStorage.removeItem("role");
-        localStorage.removeItem("access-token");
+        localStorage.removeItem("token");
       })
       .catch((err) => {
         toast.error(err);
@@ -118,9 +117,23 @@ const Navbar = () => {
                 <li>
                   <p className="font-bold">{user.displayName}</p>
                 </li>
-                <li>
-                  <Link to="/dashboard/profile">Dashboard</Link>
-                </li>
+
+                {role === "student" && (
+                  <li>
+                    <Link to="/dashboard/enrolled-classes">Dashboard</Link>
+                  </li>
+                )}
+                {role === "teacher" && (
+                  <li>
+                    <Link to="/dashboard/teacher-classes">Dashboard</Link>
+                  </li>
+                )}
+                {role === "admin" && (
+                  <li>
+                    <Link to="/dashboard/teacher-requests">Dashboard</Link>
+                  </li>
+                )}
+
                 <li>
                   <button onClick={handleLogout} className="text-red-600">
                     Logout

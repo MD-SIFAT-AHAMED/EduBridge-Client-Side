@@ -4,10 +4,12 @@ import useAxios from "../../../Hooks/useAxios";
 import { Link } from "react-router";
 import Pagination from "../../../Component/Pagination/Pagination";
 import { useState } from "react";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const AllClasses = () => {
   const axiosInstance = useAxios();
   const [currentPage, setCurrentPage] = useState(1);
+  const { role } = useUserRole();
   const itemsPerPage = 10;
 
   const { data = {}, isLoading } = useQuery({
@@ -55,9 +57,14 @@ const AllClasses = () => {
               <p>
                 <strong>Total Enrolled:</strong> {cls.totalEnrolled}
               </p>
+
               <div>
                 <Link to={`/classes-details/${cls._id}`}>
-                  <button className="btn w-full btn-primary">Enroll</button>
+                  <button className="btn w-full btn-primary">
+                    {role === "admin" || role === "teacher"
+                      ? "Details"
+                      : "Enroll"}
+                  </button>
                 </Link>
               </div>
             </div>

@@ -4,9 +4,11 @@ import "swiper/css";
 import { FaUsers } from "react-icons/fa";
 import useAxios from "../../../Hooks/useAxios";
 import { Link } from "react-router";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const PopularClasses = () => {
   const axiosInstance = useAxios();
+  const { role } = useUserRole();
   const { data: classes = [], isLoading } = useQuery({
     queryKey: ["popularClasses"],
     queryFn: async () => {
@@ -56,7 +58,11 @@ const PopularClasses = () => {
                 {cls.totalEnrolled} Enrolled
               </p>
               <Link to={`/classes-details/${cls._id}`}>
-                <button className="btn w-full mt-2 btn-primary">Enroll</button>
+                <button className="btn w-full mt-2 btn-primary">
+                  {role === "admin" || role === "teacher"
+                    ? "Details"
+                    : "Enroll"}
+                </button>
               </Link>
             </div>
           </SwiperSlide>

@@ -2,12 +2,14 @@ import { Link, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const ClassesDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
+  const { role } = useUserRole();
 
-  const { data: classData=[], isLoading } = useQuery({
+  const { data: classData = [], isLoading } = useQuery({
     queryKey: ["classDetails", id],
     enabled: !!id,
     queryFn: async () => {
@@ -16,7 +18,7 @@ const ClassesDetails = () => {
     },
   });
   // console.log(classData.image)
-  console.log(id)
+  console.log(id);
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -27,7 +29,7 @@ const ClassesDetails = () => {
           <img
             src={classData.image}
             alt={classData.title}
-            className="w-full h-80 object-cover"
+            className="w-full h-80 object-center object-cover"
           />
         </figure>
         <div className="card-body">
@@ -47,11 +49,13 @@ const ClassesDetails = () => {
           <p>
             <strong>Total Enrolled:</strong> {classData.totalEnrolled}
           </p>
-          <Link to={`/payment/${classData._id}`}>
-            <button className="w-full btn btn-primary">
-              ${classData.price} | Pay Now
-            </button>
-          </Link>
+          {role === "student" && (
+            <Link to={`/payment/${classData._id}`}>
+              <button className="w-full btn btn-primary">
+                ${classData.price} | Pay Now
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </section>

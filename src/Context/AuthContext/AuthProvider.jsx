@@ -11,11 +11,13 @@ import {
 } from "firebase/auth";
 
 import { auth } from "../../Firebase/Firebase.init";
+import useAxios from "../../Hooks/useAxios";
 
 const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosInstance = useAxios();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -42,12 +44,23 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      localStorage.setItem("access-token", currentUser?.accessToken);
       setUser(currentUser);
       setLoading(false);
+      if (currentUser?.email) {
+        const userData = { email: currentUser.email };
+        axiosInstance
+          .post("/jwt", userData)
+          .then((res) => {
+            const token = res.data.token;
+            localStorage.setItem("token", token);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     });
     return () => unSubscribe();
-  }, []);
+  }, [axiosInstance]);
 
   const authInfo = {
     user,
