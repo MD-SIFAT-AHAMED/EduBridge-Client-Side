@@ -24,7 +24,7 @@ const PaymentForm = () => {
       return res.data;
     },
   });
-  console.log(classInfo);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ const PaymentForm = () => {
       setError(error.message);
     } else {
       setError(null);
-      console.log("payment method", paymentMethod);
+      
     }
 
     // create payment intent

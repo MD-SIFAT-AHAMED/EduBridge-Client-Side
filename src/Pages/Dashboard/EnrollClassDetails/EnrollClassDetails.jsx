@@ -89,7 +89,6 @@ const EnrollClassDetails = () => {
 
   const { mutateAsync: submitFeedback } = useMutation({
     mutationFn: async (feedbackData) => {
-       console.log(feedbackData);
       const res = await axiosSecure.post("/feedback", feedbackData);
       return res.data;
     },

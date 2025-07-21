@@ -17,8 +17,8 @@ const ClassesDetails = () => {
       return res.data;
     },
   });
-  // console.log(classData.image)
-  console.log(id);
+  
+  
 
   if (isLoading) return <LoadingSpinner />;
 

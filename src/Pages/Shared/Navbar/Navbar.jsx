@@ -13,7 +13,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { role } = useUserRole();
-  console.log(role);
+  
 
   const handleLogout = () => {
     logOut()

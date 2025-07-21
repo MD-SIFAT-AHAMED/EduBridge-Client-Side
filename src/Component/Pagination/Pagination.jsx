@@ -6,7 +6,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
-  console.log(pageNumbers);
+ 
   return (
     <div className="flex justify-center mt-10 space-x-2">
       <button

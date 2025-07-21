@@ -15,7 +15,6 @@ const useUserRole = () => {
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/info/${user.email}`);
       localStorage.setItem("role", res.data?.role);
-      console.log(res.data.role);
       return res.data.role;
     },
   });

@@ -45,7 +45,7 @@ const Users = () => {
   });
 
   const handleConfirmMakeAdmin = () => {
-    console.log(selectedUser._id);
+
     if (selectedUser?._id) {
       promoteMutation.mutate(selectedUser._id);
     }

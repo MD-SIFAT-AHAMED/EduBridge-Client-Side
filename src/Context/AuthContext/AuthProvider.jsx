@@ -54,8 +54,8 @@ const AuthProvider = ({ children }) => {
             const token = res.data.token;
             localStorage.setItem("token", token);
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            
           });
       }
     });

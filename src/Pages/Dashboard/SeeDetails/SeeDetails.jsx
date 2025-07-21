@@ -46,7 +46,7 @@ const SeeDetails = () => {
   // Mutation for creating assignment
   const { mutateAsync: createAssignment } = useMutation({
     mutationFn: async (data) => {
-      console.log(data);
+
       const res = await axiosSecure.post("/assignment/create", data);
       return res.data;
     },

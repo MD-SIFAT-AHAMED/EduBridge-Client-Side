@@ -8,7 +8,7 @@ const ForgotPassword = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Forgot password request:", data.email);
+    
     // You can send a password reset email via backend/Firebase here
   };
 
