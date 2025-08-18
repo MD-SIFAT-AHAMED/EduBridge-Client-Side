@@ -2,10 +2,11 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import banner1 from "../../../assets/BannerImg/banner1.jpg";
 import banner3 from "../../../assets/BannerImg/banner3.jpg";
+import { Link } from "react-router";
 
 const Banner = () => {
   return (
-    <div >
+    <div>
       <Carousel
         autoPlay={true}
         showThumbs={false}
@@ -28,6 +29,9 @@ const Banner = () => {
               Start your journey to success with expert-led courses designed
               just for you.
             </p>
+            <Link to={"/classes"} className="btn mt-2">
+              Explore Classes
+            </Link>
           </div>
         </div>
         <div className="relative w-full">
@@ -44,6 +48,9 @@ const Banner = () => {
             <p className="text-sm md:text-lg text-gray-300">
               Turn your expertise into income by teaching what you love.
             </p>
+            <Link to={"/classes"} className="btn mt-2">
+              Explore Classes
+            </Link>
           </div>
         </div>
       </Carousel>
