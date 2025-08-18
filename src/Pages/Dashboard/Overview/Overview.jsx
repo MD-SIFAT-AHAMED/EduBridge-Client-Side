@@ -1,6 +1,7 @@
 import React from 'react';
 import useUserRole from '../../../Hooks/useUserRole';
 import OverviewAdmin from '../OverviewAdmin/OverviewAdmin';
+import OverviewTeacher from '../OverviewTeacher/OverviewTeacher';
 
 const Overview = () => {
 
@@ -9,6 +10,9 @@ const Overview = () => {
         <div>
            {
             role ==="admin" && <OverviewAdmin/>
+           }
+           {
+            role ==="teacher" && <OverviewTeacher/>
            }
         </div>
     );
