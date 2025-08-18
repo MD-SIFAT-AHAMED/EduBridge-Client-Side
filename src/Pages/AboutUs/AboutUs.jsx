@@ -1,5 +1,5 @@
 import React from "react";
-import about from "../../../assets/partnerLogo/about.jpg";
+import about from "../../assets/partnerLogo/about.jpg";
 const AboutUs = () => {
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">

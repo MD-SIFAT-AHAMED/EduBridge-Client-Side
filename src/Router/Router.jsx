@@ -27,7 +27,8 @@ import SeeDetails from "../Pages/Dashboard/SeeDetails/SeeDetails";
 import ClassProgress from "../Pages/Dashboard/ClassProgress/ClassProgress";
 import MyPayment from "../Pages/Dashboard/MyPayment/MyPayment";
 import Overview from "../Pages/Dashboard/Overview/Overview";
-import AboutUs from "../Pages/Home/AboutUs/AboutUs";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import Blog from "../Pages/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "classes",
         Component: Classes,
+      },
+      {
+        path: "blog",
+        Component: Blog,
       },
       {
         path: "about",

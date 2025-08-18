@@ -1,5 +1,11 @@
 import { Link, NavLink, useNavigate } from "react-router";
-import { FaHome, FaChalkboardTeacher, FaBookOpen, FaInfoCircle } from "react-icons/fa";
+import {
+  FaHome,
+  FaChalkboardTeacher,
+  FaBookOpen,
+  FaInfoCircle,
+  FaBlog,
+} from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import EduBridegeLogo from "../EduBridgeLogo/EduBridegeLogo";
 import useAuth from "../../../Hooks/useAuth";
@@ -48,16 +54,20 @@ const Navbar = () => {
       >
         <FaBookOpen className="mr-1" /> All Classes
       </NavLink>
-      <NavLink
-        to="/teachOnEdu"
-        className={({ isActive }) =>
-          `flex gap-1 items-center font-semibold text-base ${
-            isActive ? "text-primary" : ""
-          } `
-        }
-      >
-        <FaChalkboardTeacher className="mr-1" /> Teach on EduBridge
-      </NavLink>
+      {user && (
+        <>
+          <NavLink
+            to="/teachOnEdu"
+            className={({ isActive }) =>
+              `flex gap-1 items-center font-semibold text-base ${
+                isActive ? "text-primary" : ""
+              } `
+            }
+          >
+            <FaChalkboardTeacher className="mr-1" /> Teach on EduBridge
+          </NavLink>
+        </>
+      )}
       <NavLink
         to="/about"
         className={({ isActive }) =>
@@ -67,6 +77,16 @@ const Navbar = () => {
         }
       >
         <FaInfoCircle className="mr-1" /> About Us
+      </NavLink>
+      <NavLink
+        to="/blog"
+        className={({ isActive }) =>
+          `flex gap-1 items-center font-semibold text-base ${
+            isActive ? "text-primary" : ""
+          }`
+        }
+      >
+        <FaBlog className="mr-1" /> Blog
       </NavLink>
     </>
   );
