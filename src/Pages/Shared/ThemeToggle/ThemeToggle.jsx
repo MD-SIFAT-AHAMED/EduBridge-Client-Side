@@ -6,12 +6,12 @@ const ThemeToggle = () => {
     if (savedTheme === "dark") return false;
     if (savedTheme === "light") return true;
     // Default to dark mode if no theme is set
-    localStorage.setItem("theme", "dark");
+    localStorage.setItem("theme", "light");
     return true;
   });
 
   useEffect(() => {
-    const theme = isDark ? "dark" : "light";
+    const theme = isDark ? "light " : "dark";
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [isDark]);

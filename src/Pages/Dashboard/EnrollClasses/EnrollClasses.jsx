@@ -46,7 +46,7 @@ const EnrollClasses = () => {
             >
               {cls.title}
             </h3>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm">
               {" "}
               <strong>Instructor:</strong> {cls.teacher}
             </p>

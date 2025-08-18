@@ -47,13 +47,13 @@ const CommentSection = () => {
                 {comment.name}
               </h3>
               <p
-                className="text-sm text-gray-500 mb-1 truncate"
+                className="text-sm mb-1 truncate"
                 title={`Class: ${comment.title}`}
               >
                 {comment.title}
               </p>
               <p
-                className="text-sm text-gray-700 italic overflow-hidden text-ellipsis line-clamp-3"
+                className="text-sm italic overflow-hidden text-ellipsis line-clamp-3"
                 title={comment.description}
               >
                 "{comment.description}"

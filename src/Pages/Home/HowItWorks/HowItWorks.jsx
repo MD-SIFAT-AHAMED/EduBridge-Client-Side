@@ -26,7 +26,7 @@ const HowItWorks = () => {
   return (
     <section 
     
-    className="py-14 px-4 md:px-10 bg-white">
+    className="py-14 px-4 md:px-10">
       <h2 className="text-3xl font-bold text-center mb-10">
         How EduBridge Works
       </h2>
@@ -39,7 +39,7 @@ const HowItWorks = () => {
           >
             <div className="mb-4 flex justify-center">{step.icon}</div>
             <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-            <p className="text-gray-600 text-sm">{step.description}</p>
+            <p className=" text-sm">{step.description}</p>
           </div>
         ))}
       </div>

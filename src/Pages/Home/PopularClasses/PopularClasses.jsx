@@ -46,13 +46,13 @@ const PopularClasses = () => {
               >
                 {cls.title}
               </h3>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm ">
                 <strong>Instructor:</strong> {cls.name}
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm ">
                 <strong>Price:</strong> ${cls.price}
               </p>
-              <p className="text-sm text-gray-600 mb-2">{cls.description}</p>
+              <p className="text-sm mb-2">{cls.description}</p>
               <p className="flex items-center text-sm font-medium rounded-xl">
                 <FaUsers className="mr-1" />
                 {cls.totalEnrolled} Enrolled

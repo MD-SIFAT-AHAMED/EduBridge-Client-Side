@@ -19,7 +19,7 @@ const TeacherInspiring = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Become an Instructor
           </h1>
-          <p className="py-2 text-base md:text-lg text-gray-600 leading-relaxed">
+          <p className="py-2 text-base md:text-lg  leading-relaxed">
             Share your knowledge with thousands of eager learners. At EduBridge,
             we empower passionate educators to create impactful learning
             experiences. Join our platform and inspire the next generation.

@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section data-aos="zoom-in-up" className="bg-white py-16 px-4 md:px-10">
+    <section data-aos="zoom-in-up" className=" py-16 px-4 md:px-10">
       <h2 className="text-3xl font-bold text-center mb-10">
         Why Choose EduBridge?
       </h2>
@@ -34,11 +34,11 @@ const WhyChooseUs = () => {
           <div
             key={index}
             data-aos="zoom-in-up"
-            className="bg-white p-6 rounded-lg shadow-md text-center"
+            className=" p-6 rounded-lg shadow-md text-center"
           >
             <div className="flex justify-center mb-4">{item.icon}</div>
             <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-            <p className="text-gray-600 text-sm">{item.desc}</p>
+            <p className=" text-sm">{item.desc}</p>
           </div>
         ))}
       </div>

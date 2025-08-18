@@ -70,7 +70,7 @@ const Users = () => {
       {/* User Table */}
       <div className="overflow-x-auto rounded shadow">
         <table className="table w-full table-zebra">
-          <thead className="text-sm bg-base-200 text-gray-700">
+          <thead className="text-sm bg-base-200">
             <tr>
               <th>No</th>
               <th>Image</th>
