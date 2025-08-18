@@ -1,5 +1,5 @@
-import { Link, Outlet } from "react-router";
-import { FaBars, FaRegChartBar } from "react-icons/fa";
+import { Link, Outlet, useNavigate } from "react-router";
+import { FaBars, FaRegChartBar, FaSignOutAlt } from "react-icons/fa";
 import EduBridegeLogo from "../Pages/Shared/EduBridgeLogo/EduBridegeLogo";
 import { NavLink } from "react-router";
 import {
@@ -13,13 +13,32 @@ import {
 } from "react-icons/fa";
 import useUserRole from "../Hooks/useUserRole";
 import LoadingSpinner from "../Pages/Shared/LoadingSpinner/LoadingSpinner";
+import toast from "react-hot-toast";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import useAuth from "../Hooks/useAuth";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useUserRole();
+  const { logOut } = useAuth();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   if (roleLoading) {
     return <LoadingSpinner />;
   }
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        queryClient.removeQueries();
+        toast.success("Logout Success");
+        localStorage.removeItem("token");
+        navigate("/index");
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
 
   return (
     <div className="drawer lg:drawer-open inter-font">
@@ -146,6 +165,12 @@ const DashboardLayout = () => {
               <FaUser className="mr-2" />
               My Profile
             </NavLink>
+          </li>
+          <li>
+            <button onClick={handleLogout} className="text-red-600">
+              <FaSignOutAlt className="mr-2" />
+              Logout
+            </button>
           </li>
         </ul>
       </div>
