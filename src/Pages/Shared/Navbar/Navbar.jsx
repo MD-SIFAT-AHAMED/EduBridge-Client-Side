@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router";
-import { FaHome, FaChalkboardTeacher, FaBookOpen } from "react-icons/fa";
+import { FaHome, FaChalkboardTeacher, FaBookOpen, FaInfoCircle } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import EduBridegeLogo from "../EduBridgeLogo/EduBridegeLogo";
 import useAuth from "../../../Hooks/useAuth";
@@ -57,6 +57,16 @@ const Navbar = () => {
         }
       >
         <FaChalkboardTeacher className="mr-1" /> Teach on EduBridge
+      </NavLink>
+      <NavLink
+        to="/about"
+        className={({ isActive }) =>
+          `flex gap-1 items-center font-semibold text-base ${
+            isActive ? "text-primary" : ""
+          }`
+        }
+      >
+        <FaInfoCircle className="mr-1" /> About Us
       </NavLink>
     </>
   );
