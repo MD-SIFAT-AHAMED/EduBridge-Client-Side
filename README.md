@@ -84,3 +84,26 @@ src/
 ├── routes/           # All route definitions (public/protected)
 ├── utils/            # Helpers, secureAxios, privateRoute, etc
 └── main.jsx          # Entry point
+
+## 💻 How to Run Locally
+
+Follow these steps to set up **CookNext** on your local machine:
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/MD-SIFAT-AHAMED/EduBridge-Client-Side.git
+   cd EduBridge-Client-Side
+
+
+ 2. **Install Dependencies**
+    ```bash
+    npm install
+    
+4. **Run**
+   ```bash
+     npm run dev
+
+
+
+
+
