@@ -26,6 +26,7 @@ import EnrollClassDetails from "../Pages/Dashboard/EnrollClassDetails/EnrollClas
 import SeeDetails from "../Pages/Dashboard/SeeDetails/SeeDetails";
 import ClassProgress from "../Pages/Dashboard/ClassProgress/ClassProgress";
 import MyPayment from "../Pages/Dashboard/MyPayment/MyPayment";
+import Overview from "../Pages/Dashboard/Overview/Overview";
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         Component: MyProfile,
+      },
+      {
+        path:'overview',
+        Component:Overview
       },
       // Student Routes
       {

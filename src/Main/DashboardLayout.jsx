@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaRegChartBar } from "react-icons/fa";
 import EduBridegeLogo from "../Pages/Shared/EduBridgeLogo/EduBridegeLogo";
 import { NavLink } from "react-router";
 import {
@@ -68,6 +68,12 @@ const DashboardLayout = () => {
             <NavLink to="/">
               <FaHome className="mr-2" />
               Back to Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/overview">
+              <FaRegChartBar className="mr-2" />
+              Overview
             </NavLink>
           </li>
 

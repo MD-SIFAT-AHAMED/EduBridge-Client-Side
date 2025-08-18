@@ -3,6 +3,7 @@ import { FaUsers, FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
 import women from "../../../assets/partnerLogo/woman-attending-online-class.jpg";
 import useAxios from "../../../Hooks/useAxios";
 
+
 const WebsiteStats = () => {
   const axiosInstance = useAxios();
 
@@ -14,6 +15,8 @@ const WebsiteStats = () => {
       return res.data;
     },
   });
+
+  
 
   return (
     <div className="grid grid-cols-1 bg-base-100 lg:grid-cols-2 gap-8 items-center px-4 py-10">

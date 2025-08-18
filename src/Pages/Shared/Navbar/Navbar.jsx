@@ -6,14 +6,13 @@ import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { useQueryClient } from "@tanstack/react-query";
-import useUserRole from "../../../Hooks/useUserRole";
+
 
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { role } = useUserRole();
-  
+
 
   const handleLogout = () => {
     logOut()
@@ -117,22 +116,10 @@ const Navbar = () => {
                 <li>
                   <p className="font-bold">{user.displayName}</p>
                 </li>
+                <li>
+                  <Link to="/dashboard/overview">Dashboard</Link>
+                </li>
 
-                {role === "student" && (
-                  <li>
-                    <Link to="/dashboard/enrolled-classes">Dashboard</Link>
-                  </li>
-                )}
-                {role === "teacher" && (
-                  <li>
-                    <Link to="/dashboard/teacher-classes">Dashboard</Link>
-                  </li>
-                )}
-                {role === "admin" && (
-                  <li>
-                    <Link to="/dashboard/teacher-requests">Dashboard</Link>
-                  </li>
-                )}
 
                 <li>
                   <button onClick={handleLogout} className="text-red-600">
