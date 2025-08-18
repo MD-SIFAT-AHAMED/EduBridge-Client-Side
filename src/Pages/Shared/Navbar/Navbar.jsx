@@ -6,13 +6,12 @@ import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { useQueryClient } from "@tanstack/react-query";
-
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-
 
   const handleLogout = () => {
     logOut()
@@ -79,6 +78,9 @@ const Navbar = () => {
       {/* Right - Auth Buttons or User */}
       {!loading && (
         <div className="navbar-end ">
+          <div className="pr-3">
+            <ThemeToggle />
+          </div>
           {!user ? (
             <div className="flex gap-2">
               <Link
@@ -119,7 +121,6 @@ const Navbar = () => {
                 <li>
                   <Link to="/dashboard/overview">Dashboard</Link>
                 </li>
-
 
                 <li>
                   <button onClick={handleLogout} className="text-red-600">
